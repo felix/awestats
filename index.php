@@ -107,13 +107,12 @@
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <title><?php echo str_replace("[SITE]", GetSiteName(), str_replace("[MONTH]", Lang(date("F", $g_aLogFiles[$g_iThisLog][0])), str_replace("[YEAR]", date("Y", $g_aLogFiles[$g_iThisLog][0]), Lang("Statistics for [SITE] in [MONTH] [YEAR]")))) ?></title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
   <link rel="stylesheet" href="themes/<?php echo $g_aConfig["theme"] ?>/style.css" type="text/css" />
-  <script type="text/javascript" src="js/packed.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="js/packed.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 
   <!--
   <script type="text/javascript" src="js/jquery.js"></script>
@@ -121,9 +120,9 @@
   <script type="text/javascript" src="js/swfobject.js"></script>
   -->
 
-  <script type="text/javascript" src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-  <script type="text/javascript" src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-  <script type="text/javascript">
+  <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+  <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+  <script>
     var g_sConfig = "<?php echo $g_sConfig ?>";
     var g_iYear = <?php echo date("Y", $g_aLogFiles[$g_iThisLog][0]) ?>;
     var g_iMonth = <?php echo date("n", $g_aLogFiles[$g_iThisLog][0]) ?>;
@@ -135,13 +134,13 @@
     var sThemeDir = "<?php echo $g_aConfig["theme"] ?>";
     var sUpdateFilename = "<?php echo $sUpdateSiteFilename ?>";
   </script>
-  <script type="text/javascript" src="themes/<?php echo $g_aConfig["theme"] ?>/style.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+  <script src="themes/<?php echo $g_aConfig["theme"] ?>/style.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 <?php
   if ($sLanguageCode != "en-gb") {
     echo "  <script type=\"text/javascript\" src=\"languages/" . $sLanguageCode . ".js\"></script>\n";
   }
 ?>
-  <script type="text/javascript" src="http://version.jawstats.com/version.js"></script>
+  <script src="http://version.jawstats.com/version.js"></script>
 </head>
 
 <body>
