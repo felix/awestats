@@ -114,8 +114,11 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="js/jquery.tablesorter.js"></script>
   <script src="js/jquery.tablesorter.extensions.js"></script>
+  <script src="js/raphael.js"></script>
+  <script src="js/g.raphael.js"></script>
+  <script src="js/g.bar.js"></script>
+  <script src="js/g.pie.js"></script>
   <script src="js/sizzle.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
   <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
   <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 <script>
@@ -136,7 +139,6 @@ if ($sLanguageCode != "en-gb") {
   echo "  <script type=\"text/javascript\" src=\"languages/" . $sLanguageCode . ".js\"></script>\n";
 }
 ?>
-  <script src="http://version.jawstats.com/version.js"></script>
 </head>
 
 <body>
@@ -307,9 +309,7 @@ function Error($sReason, $sExtra="") {
     $sResolution  = "<p>" . $sExtra . "</p>\n";
     break;
   }
-  echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" " .
-    "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" .
-    "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" .
+  echo "<html>\n" .
     "<head>\n" .
     "<title>JAWStats</title>\n" .
     "<style type=\"text/css\">\n" .

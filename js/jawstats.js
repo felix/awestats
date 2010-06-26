@@ -102,14 +102,13 @@ function DisplayBandwidth(iBW) {
 }
 
 function DrawGraph(aItem, aValue, aInitial, sStyle) {
-  var oGraph = new SWFObject("swf/" + sStyle + "_graph.swf", "SWFgraph", "100%", "100%", "8", "#ffffff");
-  oGraph.addParam("wmode", "transparent");
-  oGraph.addVariable("sItem", aItem.join(","));
-  oGraph.addVariable("sValue", aValue.join(","));
-  oGraph.addVariable("sInitial", aInitial.join(","));
-  oGraph.addVariable("sColor", g_sColor);
-  oGraph.addVariable("sShadowColor", g_sShadowColor);
-  oGraph.write("graph");
+  var graph = Raphael("graph");
+  if (sStyle == "bar") {
+    graph.g.barchart(10,10,300,220,[aValue]);
+  } else if (sStyle == "pie") {
+    graph.g.piechart(10,10,300,220,[aValue]);
+  } else {
+  }
 }
 
 function DrawGraph_AllMonths() {
@@ -321,14 +320,14 @@ case "searches":
 }
 
 function DrawPie(iTotal, aItem, aValue) {
-  var oPie = new SWFObject("swf/pie.swf", "SWFpie", "100%", "100%", "8", "#ffffff");
-  oPie.addParam("wmode", "transparent");
-  oPie.addVariable("sTotal", iTotal);
-  oPie.addVariable("sItem", encodeURIComponent(aItem.join(",")));
-  oPie.addVariable("sValue", encodeURIComponent(aValue.join(",")));
-  oPie.addVariable("sColor", g_sColor);
-  oPie.addVariable("sShadowColor", g_sShadowColor);
-  oPie.write("pie");
+  var r = Raphael("pie");
+  var pie = r.g.piechart(90,165,100,aValue); //, {legend: aItem, legendpos: "south"});
+  pie.hover(function () {
+    this.sector.stop();
+    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+  }, function () {
+    this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+  });
 }
 
 function DrawPie_Browser(sPage) {
