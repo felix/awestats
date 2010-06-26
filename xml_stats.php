@@ -27,49 +27,49 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-  // includes
-  require_once "config.php";
-  require_once "clsAWStats.php";
+// includes
+require_once "config.php";
+require_once "clsAWStats.php";
 
-  // external include files
-  if ((isset($g_aConfig["includes"]) == true) && (strlen($g_aConfig["includes"]) > 0)) {
-    $aIncludes = explode(",", $g_aConfig["includes"]);
-    foreach ($aIncludes as $sInclude) {
-      include $sInclude;
-    }
+// external include files
+if ((isset($g_aConfig["includes"]) == true) && (strlen($g_aConfig["includes"]) > 0)) {
+  $aIncludes = explode(",", $g_aConfig["includes"]);
+  foreach ($aIncludes as $sInclude) {
+    include $sInclude;
   }
+}
 
-  // select configuraton
-  $g_sConfig = GetConfig();
-  $g_aConfig = $aConfig[$g_sConfig];
+// select configuraton
+$g_sConfig = GetConfig();
+$g_aConfig = $aConfig[$g_sConfig];
 
-  // create class
-  $clsAWStats = new clsAWStats($g_sConfig,
-                               $g_aConfig["statspath"],
-                               $g_aConfig["statsname"],
-                               $_GET["year"],
-                               $_GET["month"]);
+// create class
+$clsAWStats = new clsAWStats($g_sConfig,
+  $g_aConfig["statspath"],
+  $g_aConfig["statsname"], // TODO
+  $_GET["year"],
+  $_GET["month"]);
 
-  // create xml
-  $sSection = strtoupper($_GET["section"]);
-  switch ($sSection) {
-    case "BROWSER":
-    case "DAY":
-    case "DOMAIN":
-    case "ERRORS":
-    case "FILETYPES":
-    case "KEYWORDS":
-    case "PAGEREFS":
-    case "OS":
-    case "ROBOT":
-    case "SEARCHWORDS":
-    case "SEREFERRALS":
-    case "SESSION":
-    case "SIDER":
-    case "SIDER_404":
-    case "TIME":
-      $clsAWStats->OutputXML($clsAWStats->CreateXMLString($sSection));
-      break;
-  }
+// create xml
+$sSection = strtoupper($_GET["section"]);
+switch ($sSection) {
+case "BROWSER":
+case "DAY":
+case "DOMAIN":
+case "ERRORS":
+case "FILETYPES":
+case "KEYWORDS":
+case "PAGEREFS":
+case "OS":
+case "ROBOT":
+case "SEARCHWORDS":
+case "SEREFERRALS":
+case "SESSION":
+case "SIDER":
+case "SIDER_404":
+case "TIME":
+  $clsAWStats->OutputXML($clsAWStats->CreateXMLString($sSection));
+  break;
+}
 
 ?>

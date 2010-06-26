@@ -27,30 +27,30 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-  // includes
-  require_once "config.php";
-  require_once "clsAWStats.php";
+// includes
+require_once "config.php";
+require_once "clsAWStats.php";
 
-  // external include files
-  if ((isset($g_aConfig["includes"]) == true) && (strlen($g_aConfig["includes"]) > 0)) {
-    $aIncludes = explode(",", $g_aConfig["includes"]);
-    foreach ($aIncludes as $sInclude) {
-      include $sInclude;
-    }
+// external include files
+if ((isset($g_aConfig["includes"]) == true) && (strlen($g_aConfig["includes"]) > 0)) {
+  $aIncludes = explode(",", $g_aConfig["includes"]);
+  foreach ($aIncludes as $sInclude) {
+    include $sInclude;
   }
+}
 
-  // select configuraton
-  $g_sConfig = GetConfig();
-  $g_aConfig = $aConfig[$g_sConfig];
+// select configuraton
+$g_sConfig = GetConfig();
+$g_aConfig = $aConfig[$g_sConfig];
 
-  // create class
-  $clsAWStats = new clsAWStats($g_sConfig,
-                               $g_aConfig["statspath"],
-                               $g_aConfig["statsname"],
-                               $_GET["year"],
-                               $_GET["month"]);
+// create class
+$clsAWStats = new clsAWStats($g_sConfig,
+  $g_aConfig["statspath"],
+  $g_aConfig["statsname"],
+  $_GET["year"],
+  $_GET["month"]);
 
-  // create xml
-  $clsAWStats->OutputXML($clsAWStats->CreatePagesXMLString());
+// create xml
+$clsAWStats->OutputXML($clsAWStats->CreatePagesXMLString());
 
 ?>
