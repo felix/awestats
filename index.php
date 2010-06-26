@@ -112,14 +112,10 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
   <meta charset="utf-8" />
   <link rel="stylesheet" href="themes/<?php echo $g_aConfig["theme"] ?>/style.css" type="text/css" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="js/packed.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-
-  <!--
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
-  <script type="text/javascript" src="js/swfobject.js"></script>
-  -->
-
+  <script src="js/jquery.tablesorter.js"></script>
+  <script src="js/jquery.tablesorter.extensions.js"></script>
+  <script src="js/sizzle.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
   <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
   <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 <script>
