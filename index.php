@@ -117,8 +117,8 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
   <script src="js/raphael.js"></script>
   <script src="js/g.raphael.js"></script>
   <script src="js/g.bar.js"></script>
+  <script src="js/g.line.js"></script>
   <script src="js/g.pie.js"></script>
-  <script src="js/sizzle.js"></script>
   <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
   <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 <script>
