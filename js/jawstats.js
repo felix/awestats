@@ -102,12 +102,21 @@ function DisplayBandwidth(iBW) {
 }
 
 function DrawGraph(aItem, aValue, aInitial, sStyle) {
-  var graph = Raphael("graph");
+  var r = Raphael("graph",970,150),
+  fin = function () {
+    this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+  },
+  fout = function () {
+    this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+  };
+
   if (sStyle == "bar") {
-    graph.g.barchart(10,10,300,220,[aValue]);
-  } else if (sStyle == "pie") {
-    graph.g.piechart(10,10,300,220,[aValue]);
+    var graph = r.g.barchart(0,0,960,140,[aValue],{stretch: true});
+    graph.hover(fin,fout);
+    graph.label([aItem],true);
   } else {
+    var max = Math.max.apply(Math, aValue);
+    var graph = r.g.linechart(0,0,960,140,aValue,[0,max]).hover(fin,fout);
   }
 }
 
@@ -320,8 +329,8 @@ case "searches":
 }
 
 function DrawPie(iTotal, aItem, aValue) {
-  var r = Raphael("pie");
-  var pie = r.g.piechart(90,165,100,aValue); //, {legend: aItem, legendpos: "south"});
+  var r = Raphael("pie",200,380);
+  var pie = r.g.piechart(100,100,90, aValue, {legend: aItem, legendpos: "south"});
   pie.hover(function () {
     this.sector.stop();
     this.sector.scale(1.1, 1.1, this.cx, this.cy);
