@@ -38,6 +38,9 @@ var oPaging = {
 $(document).ready(function() {
   var aCurrentView = g_sCurrentView.split(".");
   $("#menu").children("ul:eq(0)").children("li").addClass("off");
+  $("#menu li span").click(function(){
+    ChangeTab($(this),$(this).parent().attr('id').replace(/tab-/i,''));
+  });
   $("#tab" + aCurrentView[0]).removeClass("off");
   DrawPage(g_sCurrentView);
 

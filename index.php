@@ -220,19 +220,19 @@ echo $sTemp;
       </div>
       <div id="menu">
         <ul>
-          <li id="tabthismonth"><span onclick="ChangeTab(this, 'thismonth.all')"><?php echo Lang("This Month"); ?></span></li>
-          <li id="taballmonths"><span onclick="ChangeTab(this, 'allmonths.all')"><?php echo Lang("All Months"); ?></span></li>
-          <li id="tabtime"><span onclick="ChangeTab(this, 'time')"><?php echo Lang("Hours"); ?></span></li>
-          <li id="tabbrowser"><span onclick="ChangeTab(this, 'browser.family')"><?php echo Lang("Browsers"); ?></span></li>
-          <li id="tabcountry"><span onclick="ChangeTab(this, 'country.all')"><?php echo Lang("Countries"); ?></span></li>
-          <li id="tabfiletypes"><span onclick="ChangeTab(this, 'filetypes')"><?php echo Lang("Filetypes"); ?></span></li>
-          <li id="tabos"><span onclick="ChangeTab(this, 'os.family')"><?php echo Lang("Operating Systems"); ?></span></li>
-          <li id="tabpages"><span onclick="ChangeTab(this, 'pages.topPages')"><?php echo Lang("Pages"); ?></span></li>
-          <li id="tabpagerefs"><span onclick="ChangeTab(this, 'pagerefs.se')"><?php echo Lang("Referrers"); ?></span></li>
-          <li id="tabrobots"><span onclick="ChangeTab(this, 'robots')"><?php echo Lang("Spiders"); ?></span></li>
-          <li id="tabsearches"><span onclick="ChangeTab(this, 'searches.keywords')"><?php echo Lang("Searches"); ?></span></li>
-          <li id="tabsession"><span onclick="ChangeTab(this, 'session')"><?php echo Lang("Sessions"); ?></span></li>
-          <li id="tabstatus"><span onclick="ChangeTab(this, 'status')"><?php echo Lang("Status"); ?></span></li>
+          <li id="tab-thismonth.all"><span><?php echo Lang("This Month"); ?></span></li>
+          <li id="tab-allmonths.all"><span><?php echo Lang("All Months"); ?></span></li>
+          <li id="tab-time"><span><?php echo Lang("Hours"); ?></span></li>
+          <li id="tab-browser.family"><span><?php echo Lang("Browsers"); ?></span></li>
+          <li id="tab-country.all"><span><?php echo Lang("Countries"); ?></span></li>
+          <li id="tab-filetypes"><span><?php echo Lang("Filetypes"); ?></span></li>
+          <li id="tab-os.family"><span><?php echo Lang("Operating Systems"); ?></span></li>
+          <li id="tab-pages.topPages"><span><?php echo Lang("Pages"); ?></span></li>
+          <li id="tab-pagerefs.se"><span><?php echo Lang("Referrers"); ?></span></li>
+          <li id="tab-robots"><span><?php echo Lang("Spiders"); ?></span></li>
+          <li id="tab-searches.keywords"><span><?php echo Lang("Searches"); ?></span></li>
+          <li id="tab-session"><span><?php echo Lang("Sessions"); ?></span></li>
+          <li id="tab-status"><span><?php echo Lang("Status"); ?></span></li>
         </ul>
       </div>
       <br style="clear: both" />
