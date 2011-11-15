@@ -68,6 +68,7 @@ oSubMenu.ThisMonth = {  "Overview"                               : "thismonth.al
 // data constants
 var gc_aContinents = { "Africa":0, "Asia":0, "Europe":0, "North America":0, "Oceania":0, "South America":0 };
 var gc_aBrowserFamily = [ { sBrowser:"camino", iHits:0, sImage:"unknown" },
+                          { sBrowser:"chrome", iHits:0, sImage:"unknown" },
                           { sBrowser:"firefox", iHits:0, sImage:"unknown" },
                           { sBrowser:"icab", iHits:0, sImage:"unknown" },
                           { sBrowser:"konqueror", iHits:0, sImage:"unknown" },
@@ -82,7 +83,7 @@ var gc_aBrowserFamily = [ { sBrowser:"camino", iHits:0, sImage:"unknown" },
                           { sBrowser:"wget", iHits:0, sImage:"unknown" },
                           { sBrowser:"Unknown", iHits:0, sImage:"unknown" },
                           { sBrowser:"Other Browsers", iHits:0, sImage:"unknown" } ]
-var gc_aBrowserFamilyCaption = { "camino":"Camino", "firefox":"Firefox", "icab":"iCab", "konqueror":"Konqueror", "libwww":"Libwww", "lotus\\-notes":"Lotus Notes", "mozilla":"Mozilla", "msie":"Internet Explorer", "netscape":"Netscape", "omniweb":"OmniWeb", "opera":"Opera", "safari":"Safari", "wget":"GNU Wget", "Unknown":"Unknown", "Other Browsers":"Other Browsers" }
+var gc_aBrowserFamilyCaption = { "camino":"Camino", "chrome":"Google Chrome", "firefox":"Firefox", "icab":"iCab", "konqueror":"Konqueror", "libwww":"Libwww", "lotus\\-notes":"Lotus Notes", "mozilla":"Mozilla", "msie":"Internet Explorer", "netscape":"Netscape", "omniweb":"OmniWeb", "opera":"Opera", "safari":"Safari", "wget":"GNU Wget", "Unknown":"Unknown", "Other Browsers":"Other Browsers" }
 
 // http://en.wikipedia.org/wiki/List_of_countries_by_continent
 var gc_aCountryContinent = {
