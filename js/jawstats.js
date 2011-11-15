@@ -171,7 +171,7 @@ function DrawGraph_Time() {
     aItem.push(sHour);
     aValue.push(oRow.iPages);
   }
-  DrawGraph(aItem, aValue, [], "line");
+  DrawGraph(aItem, aValue, [], "bar");
 }
 
 function DrawPage(sPage) {
