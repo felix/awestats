@@ -120,7 +120,7 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
   <script src="js/g.line.js"></script>
   <script src="js/g.pie.js"></script>
   <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-  <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+  <script src="js/awestats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 <script>
 var g_sConfig = "<?php echo $g_sConfig ?>";
 var g_iYear = <?php echo date("Y", $g_aLogFiles[$g_iThisLog][0]) ?>;

@@ -111,12 +111,12 @@ function DrawGraph(aItem, aValue, aInitial, sStyle) {
   };
 
   if (sStyle == "bar") {
-    var graph = r.g.barchart(0,0,960,140,[aValue],{stretch: true});
+    var graph = r.barchart(0,0,960,140,[aValue],{stretch: true});
     graph.hover(fin,fout);
     graph.label([aItem],true);
   } else {
     var max = Math.max.apply(Math, aValue);
-    var graph = r.g.linechart(0,0,960,140,aValue,[0,max]).hover(fin,fout);
+    var graph = r.linechart(0,0,960,140,aValue,[0,max]).hover(fin,fout);
   }
 }
 
@@ -330,7 +330,7 @@ function DrawPage(sPage) {
 
 function DrawPie(iTotal, aItem, aValue) {
   var r = Raphael("pie",200,380);
-  var pie = r.g.piechart(100,100,90, aValue, {legend: aItem, legendpos: "south"});
+  var pie = r.piechart(100,100,90, aValue, {legend: aItem, legendpos: "south"});
   pie.hover(function () {
     this.sector.stop();
     this.sector.scale(1.1, 1.1, this.cx, this.cy);
