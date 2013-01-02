@@ -1,7 +1,7 @@
 <?php
 
 /*
- * JAWStats 0.7 Web Statistics
+ * AWEStats 0.8 Web Statistics
  *
  * Copyright (c) 2009 Jon Combe (jawstats.com)
  *
@@ -114,7 +114,7 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="js/jquery.tablesorter.js"></script>
   <script src="js/jquery.tablesorter.extensions.js"></script>
-  <script src="js/raphael.js"></script>
+  <script src="js/raphael.min.js"></script>
   <script src="js/g.raphael.js"></script>
   <script src="js/g.bar.js"></script>
   <script src="js/g.line.js"></script>
