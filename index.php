@@ -28,8 +28,6 @@
  */
 
 header('Content-Type: text/html; charset="utf-8"', true);
-error_reporting(0);
-set_error_handler("ErrorHandler");
 
 // javascript caching
 $gc_sJavascriptVersion = "200901251254";
