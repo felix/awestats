@@ -34,24 +34,12 @@ $gc_sJavascriptVersion = "200901251254";
 $g_aTranslation = array();
 $g_aCurrentTranslation = array();
 
-// includes
-require_once "clsAWStats.php";
-require_once "languages/translations.php";
-require_once "config.php";
 ValidateConfig();
 
 // select configuraton and translations
 $g_sConfig = GetConfig();
 $g_aConfig = $aConfig[$g_sConfig];
 $sLanguageCode = SetTranslation();
-
-// external include files
-if ((isset($g_aConfig["includes"]) == true) && (strlen($g_aConfig["includes"]) > 0)) {
-  $aIncludes = explode(",", $g_aConfig["includes"]);
-  foreach ($aIncludes as $sInclude) {
-    include $sInclude;
-  }
-}
 
 // get date range and valid log file
 $g_dtStatsMonth = ValidateDate($_GET["year"], $_GET["month"]);

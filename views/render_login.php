@@ -19,7 +19,7 @@ header('Content-Type: text/html; charset="utf-8"', true);
         <div id="main">
             <div class="container">
                 <div id="content">
-                    <form action="/authenthification.php" method="post" accept-charset="utf-8">
+                    <form action="/index.php" method="post" accept-charset="utf-8">
                         <fieldset><legend>Connexion</legend>
                                 <label class="control-label" for="email">E-mail</label>
                                 <input type="text" name="email" value="" id="var_email"  />
