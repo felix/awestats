@@ -41,9 +41,11 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
     protected $mysqli;
 
     public function __construct($user, $password, $database_name) {
+        
         try {
-            $this->mysqli = new mysqli("localhost", $user, $password, $database_name);
-        } catch (mysqli_sql_exception $e) {
+            $this->mysqli = new \mysqli("localhost", $user, $password, $database_name);
+            echo "1";
+        } catch (\mysqli_sql_exception $e) {
            throw $e;
         }
     }
@@ -91,12 +93,18 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
 
     public function write(array $data)
     {
+        foreach ($data as &$value) {
+            if(is_object($value)) {
+                $value = serialize($value);
+            }
+        }
         $session_id = mysqli_escape_string($this->getSessionId());
         $data_serialized = mysqli_escape_string(serialize($data));
-        if(!empty($this->read())) {
-            $mysqli->query("UPDATE `sessions` SET `data`='{$data_serialized}'  WHERE `session_id` = '{$session_id}'");
+        $data_old = $this->read();
+        if(!empty($data_old)) {
+            $this->mysqli->query("UPDATE `sessions` SET `data`='{$data_serialized}'  WHERE `session_id` = '{$session_id}'");
         } else {
-            $mysqli->query("INSERT INTO `sessions` (`session_id`, `data`) VALUES ('{$session_id}','{$data_serialized}'");
+            $this->mysqli->query("INSERT INTO `sessions` (`session_id`, `data`) VALUES ('{$session_id}','{$data_serialized}'");
         }
     }
 
