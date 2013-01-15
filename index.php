@@ -12,18 +12,20 @@ try {
 $backend = new PHPMysqlSessionBackend(DB_USER, DB_PASSWORD, DB_NAME);
 
 $session = new Session($backend);
-$session->configure('session-awestats', '.'.BASE_URL);
+$session->configure('session-awestats', BASE_URL);
 $session->start();
 
 if(!empty($_POST['email']) && !empty($_POST['password'])) {
     $email = (string)$_POST['email'];
     $password = (string)$_POST['password'];
     $user = new User($email, $password);
-    if(empty($user)) {
+    
+    if(!$user->isValid()) {
         require 'views/render_login.php';
         exit(0);
     } else {
         $session->setUser($user);
+        $session->commit();
     }
 }
 

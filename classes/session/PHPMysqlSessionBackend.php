@@ -87,8 +87,16 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
     {
         $session_id = $this->mysqli->real_escape_string($this->getSessionId());
         $res = $this->mysqli->query("SELECT `data` FROM `sessions` WHERE `session_id` = '{$session_id}'");
-        $row = $res->fetch_row();
-        return unserialize($row[0]);
+        $row = $res->fetch_assoc();
+        $data = unserialize($row['data']);
+        
+        if(is_array($data)) {
+            foreach ($data as &$value) {
+                $value = @unserialize($value);
+            }
+        }
+        
+        return $data;
     }
 
     public function write(array $data)
@@ -102,9 +110,9 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
         $data_serialized = $this->mysqli->real_escape_string(serialize($data));
         $data_old = $this->read();
         if(!empty($data_old)) {
-            $this->mysqli->query("UPDATE `sessions` SET `data`='{$data_serialized}'  WHERE `session_id` = '{$session_id}'");
+            return $this->mysqli->query("UPDATE `sessions` SET `data`='{$data_serialized}'  WHERE `session_id` = '{$session_id}'");
         } else {
-            $this->mysqli->query("INSERT INTO `sessions` (`session_id`, `data`) VALUES ('{$session_id}','{$data_serialized}'");
+           return $this->mysqli->query("INSERT INTO `sessions` (`session_id`, `data`) VALUES ('{$session_id}','{$data_serialized}')");
         }
     }
 

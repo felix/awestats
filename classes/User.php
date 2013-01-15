@@ -10,27 +10,32 @@ class User implements Serializable {
         try {
             $this->mysqli = new mysqli("localhost", DB_USER, DB_PASSWORD, DB_NAME);
             $email = $this->mysqli->real_escape_string($email);
-            $password = $this->mysqli->real_escape_string($password);
-            $res = $this->mysqli->query("SELECT email, name FROM `users` WHERE `email` = '{$email}' AND `password`= '{$password}'");
+            $password = $this->mysqli->real_escape_string(md5($password));
+            $result = $this->mysqli->query("SELECT email, name FROM `users` WHERE `email` = '{$email}' AND `password`= '{$password}'");
         } catch (mysqli_sql_exception $e) {
             throw $e;
         }
-        $row = $res->fetch_row();
-        if(!empty($row[0])) {
-            $this->email = $row[0]['email'];
-            $this->name = $row[0]['name'];
+        $row = $result->fetch_assoc();
+        if(!empty($row)) {
+            $this->email = $row['email'];
+            $this->name = $row['name'];
             try {
                 $email = $this->mysqli->real_escape_string($this->email);
-                $password = $this->mysqli->real_escape_string($this->name);
-                $res = $this->mysqli->query("SELECT `url` FROM `websites` WHERE `user_email` = '{$email}'");
-                $rows = $res->fetch_row();
-                foreach ($rows as $row) {
+                $result = $this->mysqli->query("SELECT `url` FROM `websites` WHERE `user_email` = '{$email}'");
+                while ($row = $result->fetch_assoc()) {
                     $this->sites[] = $row['url'];
                 }
             } catch (mysqli_sql_exception $e) {
                 throw $e;
             }
         }
+    }
+    
+    public function isValid() {
+        if(empty($this->email) || empty($this->sites)) {
+            return false;
+        }
+        return true;
     }
     
     public function getSites() {
@@ -49,17 +54,15 @@ class User implements Serializable {
         return serialize(array(
             'email' => $this->email,
             'name' => $this->name,
-            'password' => $this->password,
             'sites' => serialize($this->sites)
         ));
     }
     
     public function unserialize($data) {
-        $this->data = unserialize($data);
-        $this->id = $data['email'];
-        $this->name = $data['name'];
-        $this->password = $data['password'];
-        $this->sites = unserialize($data['sites']);
+        $data_unserialized = unserialize($data);
+        $this->email = $data_unserialized['email'];
+        $this->name = $data_unserialized['name'];
+        $this->sites = unserialize($data_unserialized['sites']);
     }
     
 }
