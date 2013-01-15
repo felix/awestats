@@ -9,8 +9,8 @@ class User implements Serializable {
     public function __construct($email = null, $password = null) {
         try {
             $this->mysqli = new mysqli("localhost", DB_USER, DB_PASSWORD, DB_NAME);
-            $email = mysqli_escape_string($email);
-            $password = mysqli_escape_string($password);
+            $email = $this->mysqli->real_escape_string($email);
+            $password = $this->mysqli->real_escape_string($password);
             $res = $this->mysqli->query("SELECT email, name FROM `users` WHERE `email` = '{$email}' AND `password`= '{$password}'");
         } catch (mysqli_sql_exception $e) {
             throw $e;
@@ -20,8 +20,8 @@ class User implements Serializable {
             $this->email = $row[0]['email'];
             $this->name = $row[0]['name'];
             try {
-                $email = mysqli_escape_string($this->email);
-                $password = mysqli_escape_string($this->name);
+                $email = $this->mysqli->real_escape_string($this->email);
+                $password = $this->mysqli->real_escape_string($this->name);
                 $res = $this->mysqli->query("SELECT `url` FROM `websites` WHERE `user_email` = '{$email}'");
                 $rows = $res->fetch_row();
                 foreach ($rows as $row) {

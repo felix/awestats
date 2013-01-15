@@ -85,7 +85,7 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
 
     public function read()
     {
-        $session_id = mysqli_escape_string($this->getSessionId());
+        $session_id = $this->mysqli->real_escape_string($this->getSessionId());
         $res = $this->mysqli->query("SELECT `data` FROM `sessions` WHERE `session_id` = '{$session_id}'");
         $row = $res->fetch_row();
         return unserialize($row[0]);
@@ -98,8 +98,8 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
                 $value = serialize($value);
             }
         }
-        $session_id = mysqli_escape_string($this->getSessionId());
-        $data_serialized = mysqli_escape_string(serialize($data));
+        $session_id = $this->mysqli->real_escape_string($this->getSessionId());
+        $data_serialized = $this->mysqli->real_escape_string(serialize($data));
         $data_old = $this->read();
         if(!empty($data_old)) {
             $this->mysqli->query("UPDATE `sessions` SET `data`='{$data_serialized}'  WHERE `session_id` = '{$session_id}'");
