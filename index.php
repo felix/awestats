@@ -47,7 +47,9 @@ var_dump($session->getUser());
 
 // get ctr param
 $action = '';
-$action = (string)$_GET['action'];
+if(isset($_GET['action'])) {
+    $action = (string)$_GET['action'];
+}
 
 require_once "clsAWStats.php";
 
