@@ -36,6 +36,29 @@ if ($session->hasUser()) {
     exit(0);
 }
 
+$sites = $user->getSites();
+$aConfig = array();
+foreach ($sites as $site) {
+    if(!empty($site)) {
+        $aConfig[$site] = array(
+            "statspath"   => "/var/lib/awstats/",
+            "statsname"   => "awstats[MM][YYYY].{$site}.txt",
+            "updatepath"  => "/usr/lib/cgi-bin/",
+            "siteurl"     => "http://{$site}/",
+            "sitename"    => $site,
+            "theme"       => "default",
+            "fadespeed"   => 250,
+            "password"    => "",
+            "includes"    => "",
+            "language"    => "en-gb"
+        );
+    }
+}
+
+if(empty($aConfig)) {
+    throw new Exception('Aucun sites associés à votre compte.');
+}
+
 } catch (\Exception $e) {
     $error_message = $e->getMessage();
     require 'views/render_error.php';
