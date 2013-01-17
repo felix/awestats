@@ -13,7 +13,12 @@ class Session extends AbstractSession
      * @return User
      */
     public function getUser() {
-        return $this->get('user');
+        $user = $this->get('user');
+        if($user instanceof User) {
+            return $user;
+        } else {
+            throw new Exception('Internal error: invalid session User object');
+        }
     }
     
     /**
