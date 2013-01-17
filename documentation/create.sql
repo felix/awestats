@@ -17,5 +17,5 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `last_activity` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `data` text NOT NULL,
   PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
