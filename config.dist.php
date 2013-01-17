@@ -1,35 +1,19 @@
 <?php
 
-  // core config parameters
-  $sDefaultLanguage      = "en-gb";
-  $sConfigDefaultView    = "thismonth.all";
-  $bConfigChangeSites    = true;
-  $bConfigUpdateSites    = true;
-  $sUpdateSiteFilename   = "xml_update.php";
+// core config parameters
+define('CONFIG_DEFAULT_LANGUAGE', 'en-gb');
+define('CONFIG_DEFAULT_VIEW', 'thismonth.all');
+define('CONFIG_CHANGE_SITE', true);
+define('CONFIG_UPDATE_SITE', true);
 
-  // individual site configuration
-  $aConfig["site1"] = array(
-    "statspath"   => "/path/to/data/",
-    "updatepath"  => "/path/to/awstats.pl/",
-    "siteurl"     => "http://www.my-1st-domain.com",
-    "sitename"    => "",
-    "theme"       => "default",
-    "fadespeed"   => 250,
-    "password"    => "my-1st-password",
-    "includes"    => "",
-    "language"    => "en-gb"
-  );
+// db settings
+define('BASE_URL', 'awestats.example');
+define('DB_USER', 'example');
+define('DB_PASSWORD', 'xxxxx');
+define('DB_NAME', 'awestats');
 
-  $aConfig["site2"] = array(
-    "statspath"   => "/path/to/data/",
-    "updatepath"  => "/path/to/awstats.pl/",
-    "siteurl"     => "http://www.my-2nd-domain.com",
-    "sitename"    => "",
-    "theme"       => "default",
-    "fadespeed"   => 250,
-    "password"    => "my-2nd-password",
-    "includes"    => "",
-    "language"    => "en-gb"
-  );
+// Ensure reporting is setup correctly
+define("MYSQL_CONN_ERROR", "Unable to connect to database.");
+mysqli_report(MYSQLI_REPORT_STRICT);
 
 ?>

@@ -426,8 +426,8 @@
       return $GLOBALS["g_aConfig"]["language"];
     }
     // check for existence of global config
-    if ((isset($GLOBALS["sDefaultLanguage"]) == true) && (FindTranslation($GLOBALS["sDefaultLanguage"]) == true)) {
-      return $GLOBALS["sDefaultLanguage"];
+    if ((FindTranslation(CONFIG_DEFAULT_LANGUAGE) == true)) {
+      return CONFIG_DEFAULT_LANGUAGE;
     }
     return "en-gb";
   }
@@ -538,7 +538,7 @@
   }
 
   function ToolChangeSite() {
-    if (($GLOBALS["bConfigChangeSites"] != true) || (count($GLOBALS["aConfig"]) < 2)) {
+    if ((CONFIG_CHANGE_SITE != true) || (count($GLOBALS["aConfig"]) < 2)) {
       return "";
     }
 
@@ -576,7 +576,7 @@
   }
 
   function ToolUpdateSite() {
-    if ($GLOBALS["bConfigUpdateSites"] != true) {
+    if (CONFIG_UPDATE_SITE != true) {
       return "";
     }
 
@@ -595,10 +595,10 @@
     if (ValidateView(CONFIG_DEFAULT_VIEW) != true) {
       Error("BadConfig", "sConfigDefaultView");
     }
-    if (is_bool($GLOBALS["bConfigChangeSites"]) != true) {
+    if (is_bool(CONFIG_CHANGE_SITE) != true) {
       Error("BadConfig", "bConfigChangeSites");
     }
-    if (is_bool($GLOBALS["bConfigUpdateSites"]) != true) {
+    if (is_bool(CONFIG_UPDATE_SITE) != true) {
       Error("BadConfig", "bConfigUpdateSites");
     }
   }

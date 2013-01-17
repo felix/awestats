@@ -3429,7 +3429,7 @@ function UpdateSite() {
   $("#loading").show();
   $.ajax({
     type: "POST",
-    url: sUpdateFilename,
+    url: "index.php",
     data: ("config=" + g_sConfig + "&pass=" + MD5($("#password").val())),
     success: function(oXML) {
       switch ($(oXML).find('result:eq(0)').attr("type")) {

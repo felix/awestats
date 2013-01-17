@@ -117,7 +117,6 @@ var g_iFadeSpeed = <?php echo $g_aConfig["fadespeed"] ?>;
 var g_bUseStaticXML = <?php echo BooleanToText($g_aConfig["staticxml"]) ?>;
 var g_sLanguage = "<?php echo $sLanguageCode ?>";
 var sThemeDir = "<?php echo $g_aConfig["theme"] ?>";
-var sUpdateFilename = "<?php echo $sUpdateSiteFilename ?>";
 </script>
   <script src="themes/<?php echo $g_aConfig["theme"] ?>/style.js?<?php echo $gc_sJavascriptVersion ?>"></script>
 <?php
@@ -164,12 +163,12 @@ if ($g_iThisLog > 0) {
 echo "</span>\n";
 
 // change site (if available)
-if (($bConfigChangeSites == true) && (count($aConfig) > 1)) {
+if ((CONFIG_CHANGE_SITE == true) && (count($aConfig) > 1)) {
   echo "<span onclick=\"ShowTools('toolSite')\">" . Lang("Change Site") . "</span>\n";
 }
 
 // update site (if available)
-if ($bConfigUpdateSites == true) {
+if (CONFIG_UPDATE_SITE == true) {
   echo "<span onclick=\"ShowTools('toolUpdate')\">" . Lang("Update Site") . "</span>\n";
 }
 
