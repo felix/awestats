@@ -212,7 +212,7 @@
     	$iEndPos = strpos($this->sAWStats, ("\nEND_" . $sSection), $iStartPos);
     	$arrStat = explode("\n", substr($this->sAWStats, ($iStartPos + 1), ($iEndPos - $iStartPos - 1)));
   		for ($iIndex = 1; $iIndex < count($arrStat); $iIndex++) {
-  			$arrData[] = split(' ', $arrStat[$iIndex]);
+  			$arrData[] = preg_split('/ /', $arrStat[$iIndex]);
   		}
   		return $arrData;
     }
@@ -234,8 +234,11 @@
 
   function DrawFooter() {
     $aString = explode("_", str_replace("]", "]_", str_replace("[", "_[", Lang("Powered by [AWSTART]AWStats[END]. Made beautiful by [JAWSTART]JAWStats Web Statistics and Analytics[END]."))));
-    for ($i = 0; $i <count($aString); $i++) {
-      if ((strlen(trim($aString[$i])) > 0) && (substr($aString[$i], 0, 1) != "[") && (substr($aString[$i + 1], 0, 5) != "[END]")) {
+    for ($i = 0; $i < (count($aString)-1); $i++) {
+      if ( (strlen(trim($aString[$i])) > 0) &&
+              (substr($aString[$i], 0, 1) != "[") &&
+              (substr($aString[$i + 1], 0, 5) != "[END]")
+              ) {
         $aString[$i] = ("<span>" . $aString[$i] . "</span>");
       } else {
         switch ($aString[$i]) {
@@ -589,7 +592,7 @@
 
   function ValidateConfig() {
     // core values
-    if (ValidateView($GLOBALS["sConfigDefaultView"]) != true) {
+    if (ValidateView(CONFIG_DEFAULT_VIEW) != true) {
       Error("BadConfig", "sConfigDefaultView");
     }
     if (is_bool($GLOBALS["bConfigChangeSites"]) != true) {

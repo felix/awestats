@@ -3471,13 +3471,13 @@ function XMLURL(sPage) {
   } else {
     switch (sPage) {
       case "ALLMONTHS":
-        sURL = ("xml_history.php?config=" + g_sConfig);
+        sURL = ("index.php?action=history&config=" + g_sConfig);
       break;
       case "PAGES":
-        sURL = ("xml_pages.php?config=" + g_sConfig + "&year=" + g_iYear + "&month=" + g_iMonth);
+        sURL = ("index.php?action=pages&config=" + g_sConfig + "&year=" + g_iYear + "&month=" + g_iMonth);
       break;
       default:
-        sURL = ("xml_stats.php?config=" + g_sConfig + "&section=" + sPage + "&year=" + g_iYear + "&month=" + g_iMonth);
+        sURL = ("index.php?action=stats&config=" + g_sConfig + "&section=" + sPage + "&year=" + g_iYear + "&month=" + g_iMonth);
     }
   }
   return sURL;

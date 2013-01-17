@@ -42,7 +42,7 @@ $g_aConfig = $aConfig[$g_sConfig];
 $sLanguageCode = SetTranslation();
 
 // get date range and valid log file
-$g_dtStatsMonth = ValidateDate($_GET["year"], $_GET["month"]);
+$g_dtStatsMonth = ValidateDate($year, $month);
 $g_aLogFiles = GetLogList($g_sConfig, $g_aConfig["statspath"], $g_aConfig["statsname"]);
 $g_iThisLog = -1;
 for ($iIndex = 0; $iIndex < count($g_aLogFiles); $iIndex++) {
@@ -60,10 +60,10 @@ if ($g_iThisLog < 0) {
 }
 
 // validate current view
-if (ValidateView($_GET["view"]) == true) {
-  $sCurrentView = $_GET["view"];
+if (ValidateView($view) == true) {
+  $sCurrentView = $view;
 } else {
-  $sCurrentView = $sConfigDefaultView;
+  $sCurrentView = CONFIG_DEFAULT_VIEW;
 }
 
 // create class

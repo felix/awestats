@@ -36,9 +36,6 @@ if ($session->hasUser()) {
     exit(0);
 }
 
-var_dump($session->hasUser());
-var_dump($session->getUser());
-
 } catch (\Exception $e) {
     $error_message = $e->getMessage();
     require 'views/render_error.php';
@@ -49,6 +46,22 @@ var_dump($session->getUser());
 $action = '';
 if(isset($_GET['action'])) {
     $action = (string)$_GET['action'];
+}
+// get year
+$now = new DateTime();
+$year = $now->format("Y");
+if(isset($_GET['year'])) {
+    $year = (string)$_GET["year"];
+}
+// get month
+$month = $now->format("m");
+if(isset($_GET['month'])) {
+    $month = (string)$_GET["month"];
+}
+// get view
+$view = CONFIG_DEFAULT_VIEW;
+if(isset($_GET['view'])) {
+    $view = (string)$_GET["view"];
 }
 
 require_once "clsAWStats.php";
