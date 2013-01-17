@@ -44,7 +44,6 @@ class PHPMysqlSessionBackend implements SessionBackendInterface
         
         try {
             $this->mysqli = new \mysqli("localhost", $user, $password, $database_name);
-            echo "1";
         } catch (\mysqli_sql_exception $e) {
            throw $e;
         }
