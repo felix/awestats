@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__ . '/config.php';
-require __DIR__ . '/classes/session/autoload.php';
-require __DIR__ . '/classes/Session.php';
-require __DIR__ . '/classes/User.php';
+require 'config.php';
+require 'classes/session/autoload.php';
+require 'classes/Session.php';
+require 'classes/User.php';
 
 use spriebsch\session\PHPMysqlSessionBackend;
 
