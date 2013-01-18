@@ -87,7 +87,7 @@ if(isset($_GET['view'])) {
     $view = (string)$_GET["view"];
 }
 
-require_once "clsAWStats.php";
+require_once "classes/clsAWStats.php";
 
 switch ($action) {
     case 'history':

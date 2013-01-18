@@ -27,18 +27,6 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// includes
-require_once "config.php";
-require_once "clsAWStats.php";
-
-// external include files
-if ((isset($g_aConfig["includes"]) == true) && (strlen($g_aConfig["includes"]) > 0)) {
-  $aIncludes = explode(",", $g_aConfig["includes"]);
-  foreach ($aIncludes as $sInclude) {
-    include $sInclude;
-  }
-}
-
 // select configuraton
 $g_sConfig = GetConfig();
 $g_aConfig = $aConfig[$g_sConfig];
