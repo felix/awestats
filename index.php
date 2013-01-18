@@ -21,7 +21,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])) {
     $user = new User($email, $password);
     
     if(!$user->isValid()) {
-        require 'views/render_login.php';
+        require 'controllers/render_login.php';
         exit(0);
     } else {
         $session->setUser($user);
@@ -32,7 +32,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])) {
 if ($session->hasUser()) {
     $user = $session->getUser();
 } else {
-    require 'views/render_login.php';
+    require 'controllers/render_login.php';
     exit(0);
 }
 
@@ -61,7 +61,7 @@ if(empty($aConfig)) {
 
 } catch (\Exception $e) {
     $error_message = $e->getMessage();
-    require 'views/render_error.php';
+    require 'controllers/render_error.php';
     exit(0);
 }
 
@@ -91,20 +91,20 @@ require_once "classes/clsAWStats.php";
 
 switch ($action) {
     case 'history':
-        require 'views/xml_history.php';
+        require 'controllers/xml_history.php';
         break;
     case 'pages':
-        require 'views/xml_pages.php';
+        require 'controllers/xml_pages.php';
         break;
     case 'stats':
-        require 'views/xml_stats.php';
+        require 'controllers/xml_stats.php';
         break;
     case 'update':
-        require 'views/xml_update.php';
+        require 'controllers/xml_update.php';
         break;
     default:
         require_once "languages/translations.php";
-        require 'views/render_index.php';
+        require 'controllers/render_index.php';
         break;
 }
 

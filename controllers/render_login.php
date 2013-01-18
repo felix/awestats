@@ -12,7 +12,7 @@ header('Content-Type: text/html; charset="utf-8"', true);
 
         <title>Awestats - Connexion</title>
 
-        <link href="/themes/default/css/style.css" rel="stylesheet" type="text/css" />	
+        <link href="/themes/default/style.css" rel="stylesheet" type="text/css" />	
     </head>
 
     <body>
