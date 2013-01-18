@@ -6,12 +6,16 @@ class User implements Serializable {
     private $name;
     private $sites = array();
     
-    public function __construct($email = null, $password = null) {
+    public function __construct($email, $password = null) {
         try {
             $this->mysqli = new mysqli("localhost", DB_USER, DB_PASSWORD, DB_NAME);
             $email = $this->mysqli->real_escape_string($email);
-            $password = $this->mysqli->real_escape_string(md5($password));
-            $result = $this->mysqli->query("SELECT email, name FROM `users` WHERE `email` = '{$email}' AND `password`= '{$password}'");
+            if(isset($password)) {
+                $password = $this->mysqli->real_escape_string(md5($password));
+                $result = $this->mysqli->query("SELECT email, name FROM `users` WHERE `email` = '{$email}' AND `password`= '{$password}'");
+            } else {
+                $result = $this->mysqli->query("SELECT email, name FROM `users` WHERE `email` = '{$email}'");
+            }
         } catch (mysqli_sql_exception $e) {
             throw $e;
         }
