@@ -105,15 +105,15 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
         <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="/assets/style.css" type="text/css" />
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="js/jquery.tablesorter.js"></script>
-        <script src="js/jquery.tablesorter.extensions.js"></script>
-        <script src="js/raphael.js"></script>
-        <script src="js/g.raphael.js"></script>
-        <script src="js/g.bar.js"></script>
-        <script src="js/g.line.js"></script>
-        <script src="js/g.pie.js"></script>
-        <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-        <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+        <script src="/assets/js/jquery.tablesorter.js"></script>
+        <script src="/assets/js/jquery.tablesorter.extensions.js"></script>
+        <script src="/assets/js/raphael.js"></script>
+        <script src="/assets/js/g.raphael.js"></script>
+        <script src="/assets/js/g.bar.js"></script>
+        <script src="/assets/js/g.line.js"></script>
+        <script src="/assets/js/g.pie.js"></script>
+        <script src="/assets/js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+        <script src="/assets/js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
         
         <script>
         var g_sConfig = "<?php echo $g_sConfig ?>";
@@ -126,7 +126,7 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
         var g_sLanguage = "<?php echo $sLanguageCode ?>";
         var sThemeDir = "<?php echo $g_aConfig["theme"] ?>";
         </script>
-          <script src="themes/<?php echo $g_aConfig["theme"] ?>/style.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+          
         <?php
         if ($sLanguageCode != "en-gb") {
           echo "  <script type=\"text/javascript\" src=\"languages/" . $sLanguageCode . ".js\"></script>\n";
