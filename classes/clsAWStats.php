@@ -497,13 +497,9 @@
 
   function ToolChangeMonth() {
     $aHTML = array();
-    $aHTML[] = "<div id=\"toolMonth\" class=\"tool\">\n<div>";
-    $aHTML[] = "<h1>" . Lang("Please select the month you wish to view") . "<span onclick=\"ShowTools('toolMonth')\">(" . Lang("Cancel") . ")</span></h1>";
-    $aHTML[] = "<table id=\"datepicker\" cellspacing=\"0\">";
 
     //loop through years
     for ($iYear = date("Y", $GLOBALS["g_aLogFiles"][0][0]); $iYear >= date("Y", $GLOBALS["g_aLogFiles"][count($GLOBALS["g_aLogFiles"]) - 1][0]); $iYear--) {
-      $aHTML[] = "<tr>\n<td>" . $iYear . ":</td>";
 
       // loop through months
       for ($iMonth = 1; $iMonth < 13; $iMonth++) {
@@ -520,19 +516,16 @@
           if ((date("n", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iMonth) && (date("Y", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iYear)) {
             $sCSS .= " selected";
           }
-          $aHTML[] = "<td class='date" . $sCSS . "' onclick='ChangeMonth(" . date("Y,n", $dtTemp) . ")'>" . Lang(date("F", $dtTemp)) . "</td>";
+          $aHTML[] = "<li><a href=\"#\" onclick='ChangeMonth(" . date("Y,n", $dtTemp) . ")'>" . Lang(date("F", $dtTemp)) . "</a></li>";
         } else {
           if ($dtTemp > time()) {
-            $aHTML[] = "<td class='fade'>&nbsp;</td>";
+            $aHTML[] = "";
           } else {
-            $aHTML[] = "<td class='fade'>" . Lang(date("F", $dtTemp)) . "</td>";
+            $aHTML[] = "";
           }
         }
       }
-      $aHTML[] = "</tr>";
     }
-    $aHTML[] = "</table>";
-    $aHTML[] = "</div></div>";
 
     return implode($aHTML, "\n");
   }
@@ -544,9 +537,6 @@
 
     // create html
     $aHTML = array();
-    $aHTML[] = "<div id=\"toolSite\" class=\"tool\">\n<div>";
-    $aHTML[] = "<h1>" . Lang("Please select the site you wish to view") . "<span onclick=\"ShowTools('toolSite')\">(" . Lang("Cancel") . ")</span></h1>";
-    $aHTML[] = "<table id=\"sitepicker\" cellspacing=\"0\">\n<tr><td><ul>";
 
     // loop through sites
     $i = 0;
@@ -557,20 +547,18 @@
       if ($GLOBALS["g_sConfig"] == $sSiteCode) {
         $sCSS = " class=\"selected\"";
       }
-      $aHTML[] = "<li" . $sCSS . " onclick=\"ChangeSite('" . $sSiteCode . "')\">" .
-                 (((isset($aSite["sitename"]) == true) && (strlen(trim($aSite["sitename"])) > 0)) ? $aSite["sitename"] : $aSite["siteurl"]) . "</li>";
+      $aHTML[] = "<li> <a href=\"#\" onclick=\"ChangeSite('" . $sSiteCode . "')\">" .
+                 (((isset($aSite["sitename"]) == true) && (strlen(trim($aSite["sitename"])) > 0)) ? $aSite["sitename"] : $aSite["siteurl"]) . "</a></li>";
       $i++;
       if (($i == $iColA) || ($i == $iColB)) {
-        $aHTML[] = "</ul>\n</td>\n<td><ul>";
+        $aHTML[] = "";
         if ((count($GLOBALS["aConfig"]) == 2) && ($i == 2)) {
-          $aHTML[] = "<li></li>";
+          $aHTML[] = "";
         }
       }
     }
 
     // close html
-    $aHTML[] = "</ul>\n</td>\n</tr>\n</table>";
-    $aHTML[] = "</div></div>";
 
     return implode($aHTML, "\n");
   }

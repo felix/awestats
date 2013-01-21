@@ -11,25 +11,52 @@ header('Content-Type: text/html; charset="utf-8"', true);
         <meta name="robots" content="no-cache">
 
         <title>Awestats - Connexion</title>
-
-        <link href="/themes/default/style.css" rel="stylesheet" type="text/css" />	
+        <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
-        <div id="main">
-            <div class="container">
-                <div id="content">
-                    <form action="/index.php" method="post" accept-charset="utf-8">
-                        <fieldset><legend>Connexion</legend>
-                                <label class="control-label" for="email">E-mail</label>
-                                <input type="text" name="email" value="" id="var_email"  />
-                                <label class="control-label" for="password">Mot de passe</label>
-                                <input type="password" name="password" value=""  />        
-                        </fieldset>
-                        <input type="submit" class="btn btn-primary" value="Connexion" />
-                    </form>
+        <div id="page-container" class="container">
+
+            <div id="header" class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="/index.php">Awestats</a>
+                        <ul class="nav pull-right">
+                        </ul>
+
+
+                    </div>
                 </div>
             </div>
-        </div>
+            <div id="page" class="row-fluid">
+
+                <div class="span12">
+
+
+                    <form action="/index.php" method="post" accept-charset="utf-8" class="form-horizontal auto-focus">
+                        <fieldset><legend>Connexion</legend>
+                            <div class="control-group">
+
+                                <label class="control-label" for="email">E-mail</label>
+                                <div class="controls">
+                                    <input type="text" name="email" value="" id="var_email"  />            </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="password">Mot de passe</label>
+                                <div class="controls">
+
+                                    <input type="password" name="password" value=""  />         </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Connexion" />
+                        </div>
+
+                    </form>
+
+                </div><!-- /.span9 -->
+            </div><!-- #page -->
+        </div><!-- #page-container -->
     </body>
 </html>

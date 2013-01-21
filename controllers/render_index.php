@@ -93,99 +93,94 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
 
 ?>
 
+
+<!DOCTYPE html>
 <html>
-  <title><?php echo str_replace("[SITE]", GetSiteName(), str_replace("[MONTH]", Lang(date("F", $g_aLogFiles[$g_iThisLog][0])), str_replace("[YEAR]", date("Y", $g_aLogFiles[$g_iThisLog][0]), Lang("Statistics for [SITE] in [MONTH] [YEAR]")))) ?></title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="themes/<?php echo $g_aConfig["theme"] ?>/style.css" type="text/css" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="js/jquery.tablesorter.js"></script>
-  <script src="js/jquery.tablesorter.extensions.js"></script>
-  <script src="js/raphael.js"></script>
-  <script src="js/g.raphael.js"></script>
-  <script src="js/g.bar.js"></script>
-  <script src="js/g.line.js"></script>
-  <script src="js/g.pie.js"></script>
-  <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-  <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-<script>
-var g_sConfig = "<?php echo $g_sConfig ?>";
-var g_iYear = <?php echo date("Y", $g_aLogFiles[$g_iThisLog][0]) ?>;
-var g_iMonth = <?php echo date("n", $g_aLogFiles[$g_iThisLog][0]) ?>;
-var g_sCurrentView = "<?php echo $sCurrentView ?>";
-var g_dtLastUpdate = <?php echo $clsAWStats->dtLastUpdate ?>;
-var g_iFadeSpeed = <?php echo $g_aConfig["fadespeed"] ?>;
-var g_bUseStaticXML = <?php echo BooleanToText($g_aConfig["staticxml"]) ?>;
-var g_sLanguage = "<?php echo $sLanguageCode ?>";
-var sThemeDir = "<?php echo $g_aConfig["theme"] ?>";
-</script>
-  <script src="themes/<?php echo $g_aConfig["theme"] ?>/style.js?<?php echo $gc_sJavascriptVersion ?>"></script>
-<?php
-if ($sLanguageCode != "en-gb") {
-  echo "  <script type=\"text/javascript\" src=\"languages/" . $sLanguageCode . ".js\"></script>\n";
-}
-?>
-</head>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="author" content="Mezcalito">
+        <meta name="Description" content="Awestats">
+        <meta name="robots" content="no-cache">
 
-<body>
+        <title><?php echo str_replace("[SITE]", GetSiteName(), str_replace("[MONTH]", Lang(date("F", $g_aLogFiles[$g_iThisLog][0])), str_replace("[YEAR]", date("Y", $g_aLogFiles[$g_iThisLog][0]), Lang("Statistics for [SITE] in [MONTH] [YEAR]")))) ?></title>
+        <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <!--<link rel="stylesheet" href="themes/<?php echo $g_aConfig["theme"] ?>/style.css" type="text/css" />-->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="js/jquery.tablesorter.js"></script>
+        <script src="js/jquery.tablesorter.extensions.js"></script>
+        <script src="js/raphael.js"></script>
+        <script src="js/g.raphael.js"></script>
+        <script src="js/g.bar.js"></script>
+        <script src="js/g.line.js"></script>
+        <script src="js/g.pie.js"></script>
+        <script src="js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+        <script src="js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+        
+        <script>
+        var g_sConfig = "<?php echo $g_sConfig ?>";
+        var g_iYear = <?php echo date("Y", $g_aLogFiles[$g_iThisLog][0]) ?>;
+        var g_iMonth = <?php echo date("n", $g_aLogFiles[$g_iThisLog][0]) ?>;
+        var g_sCurrentView = "<?php echo $sCurrentView ?>";
+        var g_dtLastUpdate = <?php echo $clsAWStats->dtLastUpdate ?>;
+        var g_iFadeSpeed = <?php echo $g_aConfig["fadespeed"] ?>;
+        var g_bUseStaticXML = <?php echo BooleanToText($g_aConfig["staticxml"]) ?>;
+        var g_sLanguage = "<?php echo $sLanguageCode ?>";
+        var sThemeDir = "<?php echo $g_aConfig["theme"] ?>";
+        </script>
+          <script src="themes/<?php echo $g_aConfig["theme"] ?>/style.js?<?php echo $gc_sJavascriptVersion ?>"></script>
+        <?php
+        if ($sLanguageCode != "en-gb") {
+          echo "  <script type=\"text/javascript\" src=\"languages/" . $sLanguageCode . ".js\"></script>\n";
+        }
+        ?>
+          
+          <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    </head>
 
-  <div id="tools">
-<?php
+    <body>
+          
+        <div id="page-container" class="container">
 
-echo ToolChangeMonth();
-echo ToolChangeSite();
-echo ToolUpdateSite();
-echo ToolChangeLanguage();
+            <div id="header" class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="/index.php">Awestats</a>
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Sites <b class="caret"></b></a>
 
-?>
-  </div>
+                                <ul class="dropdown-menu">
+                                  <?php echo ToolChangeSite();?>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mois <b class="caret"></b></a>
 
-  <div id="toolmenu">
-    <div class="container">
-<?php
-
-// change month
-echo "<span>";
-if ($g_iThisLog < (count($g_aLogFiles) - 1)) {
-  echo "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/first.gif\" onmouseover=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/first_on.gif'\" onmouseout=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/first.gif'\" class=\"changemonth\" onclick=\"ChangeMonth(" . date("Y,n", $g_aLogFiles[count($g_aLogFiles) - 1][0]) . ")\" />" .
-    "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/prev.gif\" onmouseover=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/prev_on.gif'\" onmouseout=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/prev.gif'\" class=\"changemonth\" onclick=\"ChangeMonth(" . date("Y,n", $g_aLogFiles[$g_iThisLog + 1][0]) . ")\" />";
-} else {
-  echo "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/first_off.gif\" class=\"changemonthOff\" />" .
-    "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/prev_off.gif\" class=\"changemonthOff\" />";
-}
-echo "<span onclick=\"ShowTools('toolMonth');\">" . Lang("Change Month") . "</span>";
-if ($g_iThisLog > 0) {
-  echo "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/next.gif\" onmouseover=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/next_on.gif'\" onmouseout=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/next.gif'\" class=\"changemonth\" onclick=\"ChangeMonth(" . date("Y,n", $g_aLogFiles[$g_iThisLog - 1][0]) . ")\" />" .
-    "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/last.gif\" onmouseover=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/last_on.gif'\" onmouseout=\"this.src='themes/" . $g_aConfig["theme"] . "/changemonth/last.gif'\" class=\"changemonth\" onclick=\"ChangeMonth(" . date("Y,n", $g_aLogFiles[0][0]) . ")\" /> ";
-} else {
-  echo "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/next_off.gif\" class=\"changemonthOff\" />" .
-    "<img src=\"themes/" . $g_aConfig["theme"] . "/changemonth/last_off.gif\" class=\"changemonthOff\" />";
-}
-echo "</span>\n";
-
-// change site (if available)
-if ((CONFIG_CHANGE_SITE == true) && (count($aConfig) > 1)) {
-  echo "<span onclick=\"ShowTools('toolSite')\">" . Lang("Change Site") . "</span>\n";
-}
-
-// update site (if available)
-if (CONFIG_UPDATE_SITE == true) {
-  echo "<span onclick=\"ShowTools('toolUpdate')\">" . Lang("Update Site") . "</span>\n";
-}
-
-// change language
-echo "<span id=\"toolLanguageButton\" onclick=\"ShowTools('toolLanguage')\">" . Lang("Change Language") .
-  "<img src=\"themes/" . $g_aConfig["theme"] . "/images/change_language.gif\" /></span>\n";
-
-?>
-    </div>
-  </div>
-
-  <div id="header">
-    <div class="container">
-      <?php echo DrawHeader($g_aLogFiles[$g_iThisLog][0]) ?>
+                                <ul class="dropdown-menu">
+                                  <?php echo ToolChangeMonth();?>
+                                </ul>
+                            </li>
+                        </ul>
 
 
-      <div id="summary">
+                    </div>
+                </div>
+            </div>
+            <div id="page" class="row">
+
+                <div class="span12">
+
+                <?php
+
+    //            echo ToolUpdateSite();
+    //            echo ToolChangeLanguage();
+
+                ?>
+                    <?php echo DrawHeader($g_aLogFiles[$g_iThisLog][0]) ?>
+                </div>
+            </div>
+      <div id="summary" class="row">
+          <div class="span12">
 <?php
 
 $sTemp = Lang("Last updated [DAYNAME], [DATE] [MONTH] [YEAR] at [TIME] [ELAPSEDTIME]. A total of [TOTALVISITORS] visitors ([UNIQUEVISITORS] unique) this month, an average of [DAILYAVERAGE] per day ([DAILYUNIQUE] unique).");
@@ -202,36 +197,39 @@ $sTemp = str_replace("[DAILYUNIQUE]", number_format($iDailyUniqueAvg, 1), $sTemp
 echo $sTemp;
 
 ?>
+        </div>
       </div>
-      <div id="menu">
-        <ul>
-          <li id="tabthismonth"><span onclick="ChangeTab(this, 'thismonth.all')"><?php echo Lang("This Month"); ?></span></li>
-          <li id="taballmonths"><span onclick="ChangeTab(this, 'allmonths.all')"><?php echo Lang("All Months"); ?></span></li>
-          <li id="tabtime"><span onclick="ChangeTab(this, 'time')"><?php echo Lang("Hours"); ?></span></li>
-          <li id="tabbrowser"><span onclick="ChangeTab(this, 'browser.family')"><?php echo Lang("Browsers"); ?></span></li>
-          <li id="tabcountry"><span onclick="ChangeTab(this, 'country.all')"><?php echo Lang("Countries"); ?></span></li>
-          <li id="tabfiletypes"><span onclick="ChangeTab(this, 'filetypes')"><?php echo Lang("Filetypes"); ?></span></li>
-          <li id="tabos"><span onclick="ChangeTab(this, 'os.family')"><?php echo Lang("Operating Systems"); ?></span></li>
-          <li id="tabpages"><span onclick="ChangeTab(this, 'pages.topPages')"><?php echo Lang("Pages"); ?></span></li>
-          <li id="tabpagerefs"><span onclick="ChangeTab(this, 'pagerefs.se')"><?php echo Lang("Referrers"); ?></span></li>
-          <li id="tabrobots"><span onclick="ChangeTab(this, 'robots')"><?php echo Lang("Spiders"); ?></span></li>
-          <li id="tabsearches"><span onclick="ChangeTab(this, 'searches.keywords')"><?php echo Lang("Searches"); ?></span></li>
-          <li id="tabsession"><span onclick="ChangeTab(this, 'session')"><?php echo Lang("Sessions"); ?></span></li>
-          <li id="tabstatus"><span onclick="ChangeTab(this, 'status')"><?php echo Lang("Status"); ?></span></li>
-        </ul>
+      <div id="menu" class="row">
+          <div class="span12">
+            <ul class="nav nav-tabs">
+              <li id="tabthismonth"><a href="#" onclick="ChangeTab(this, 'thismonth.all')"><?php echo Lang("This Month"); ?></a></li>
+              <li id="taballmonths"><a href="#"  onclick="ChangeTab(this, 'allmonths.all')"><?php echo Lang("All Months"); ?></a></li>
+              <li id="tabtime"><a href="#"  onclick="ChangeTab(this, 'time')"><?php echo Lang("Hours"); ?></a></li>
+              <li id="tabbrowser"><a href="#"  onclick="ChangeTab(this, 'browser.family')"><?php echo Lang("Browsers"); ?></a></li>
+              <li id="tabcountry"><a href="#"  onclick="ChangeTab(this, 'country.all')"><?php echo Lang("Countries"); ?></a></li>
+              <li id="tabfiletypes"><a href="#"  onclick="ChangeTab(this, 'filetypes')"><?php echo Lang("Filetypes"); ?></a></li>
+              <li id="tabos"><a href="#"  onclick="ChangeTab(this, 'os.family')"><?php echo Lang("Operating Systems"); ?></a></li>
+              <li id="tabpages"><a href="#"  onclick="ChangeTab(this, 'pages.topPages')"><?php echo Lang("Pages"); ?></a></li>
+              <li id="tabpagerefs"><a href="#"  onclick="ChangeTab(this, 'pagerefs.se')"><?php echo Lang("Referrers"); ?></a></li>
+              <li id="tabrobots"><a href="#"  onclick="ChangeTab(this, 'robots')"><?php echo Lang("Spiders"); ?></a></li>
+              <li id="tabsearches"><a href="#"  onclick="ChangeTab(this, 'searches.keywords')"><?php echo Lang("Searches"); ?></a></li>
+              <li id="tabsession"><a href="#"  onclick="ChangeTab(this, 'session')"><?php echo Lang("Sessions"); ?></a></li>
+              <li id="tabstatus"><a href="#"  onclick="ChangeTab(this, 'status')"><?php echo Lang("Status"); ?></a></li>
+            </ul>
+        </div>
       </div>
-      <br style="clear: both" />
-      <div id="loading">&nbsp;</div>
-    </div>
-  </div>
-  <div id="main">
-    <div class="container">
-      <div id="content">&nbsp;</div>
-      <div id="footer">
-        <?php echo DrawFooter(); ?>
-        <span id="version">&nbsp;</span>
-      </div>
-    </div>
+      
+        <div class="row">
+          <div id="content" class="span_12">
+            &nbsp;
+          </div>
+        </div>
+        <div id="footer row">
+            <div class="span_12">
+                <?php echo DrawFooter(); ?>
+                <span id="version">&nbsp;</span>
+            </div>
+        </div>
   </div>
 </body>
 
