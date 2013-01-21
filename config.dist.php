@@ -1,6 +1,7 @@
 <?php
 
 // core config parameters
+define('CONFIG_DEFAULT_TITLE', 'Example Organisation');
 define('CONFIG_DEFAULT_LANGUAGE', 'en-gb');
 define('CONFIG_DEFAULT_VIEW', 'thismonth.all');
 define('CONFIG_CHANGE_SITE', true);

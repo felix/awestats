@@ -1,5 +1,7 @@
 ﻿<?php
 
+global $g_aTranslation;
+
   $g_aTranslation[] = array(
     "code" => "de-de",
     "name" => "Deutsch",

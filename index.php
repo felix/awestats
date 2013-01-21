@@ -50,7 +50,7 @@ try {
                 "fadespeed" => 250,
                 "password" => "",
                 "includes" => "",
-                "language" => "en-gb"
+                "language" => CONFIG_DEFAULT_LANGUAGE
             );
         }
     }

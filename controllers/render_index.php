@@ -31,7 +31,6 @@ header('Content-Type: text/html; charset="utf-8"', true);
 
 // javascript caching
 $gc_sJavascriptVersion = "200901251254";
-$g_aTranslation = array();
 $g_aCurrentTranslation = array();
 
 ValidateConfig();
