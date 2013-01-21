@@ -229,13 +229,12 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
             &nbsp;
           </div>
         </div>
-        <div id="footer row">
-            <div class="span_12">
-                <?php echo DrawFooter(); ?>
-                <span id="version">&nbsp;</span>
-            </div>
-        </div>
-  </div>
+        
+    </div>
+    <div id="footer" class="footer">
+            <?php echo DrawFooter(); ?>
+            <span id="version">&nbsp;</span>
+    </div>
 </body>
 
 </html>
