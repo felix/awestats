@@ -10,17 +10,17 @@ header('Content-Type: text/html; charset="utf-8"', true);
         <meta name="Description" content="Awestats - Connexion">
         <meta name="robots" content="no-cache">
 
-        <title>Awestats - Connexion</title>
+        <title><?php echo CONFIG_DEFAULT_TITLE; ?> - Connexion</title>
         <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
         <div id="page-container" class="container">
 
-            <div id="header" class="navbar navbar-fixed-top">
+            <div id="header" class="navbar navbar-fixed-top navbar-inverse">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="brand" href="/index.php">Awestats</a>
+                        <a class="brand" href="/index.php"><?php echo CONFIG_DEFAULT_TITLE; ?></a>
                         <ul class="nav pull-right">
                         </ul>
 

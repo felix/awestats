@@ -258,26 +258,13 @@
   }
 
   function DrawHeader($dtDate) {
-    $aString = explode("_", str_replace("]", "]_", str_replace("[", "_[", Lang("Statistics for [SITE] in [MONTH] [YEAR]"))));
-    for ($i = 0; $i <count($aString); $i++) {
-      if ((strlen(trim($aString[$i])) > 0) && (substr($aString[$i], 0, 1) != "[")) {
-        $aString[$i] = ("<span>" . $aString[$i] . "</span>");
-      } else {
-        switch ($aString[$i]) {
-          case "[MONTH]":
-            $aString[$i] = Lang(date("F", $dtDate));
-            break;
-          case "[SITE]":
-            $aString[$i] = (GetSiteName() . "<a href=\"" . $GLOBALS["g_aConfig"]["siteurl"] .
+    
+            $result_month = Lang(date("F", $dtDate));
+            $result_site = (GetSiteName() . "<a href=\"" . $GLOBALS["g_aConfig"]["siteurl"] .
                             "\" target=\"_blank\"><img src=\"themes/default/images/external_link.png\" class=\"externallink\" /></a>");
-            break;
-          case "[YEAR]":
-            $aString[$i] = date("Y", $dtDate);
-            break;
-        }
-      }
-    }
-    return ("<h1>" . implode($aString) . "</h1>");
+            $result_year = date("Y", $dtDate);
+           
+    return ('<div class="page-header"><h1>'.$result_site.' <small>'.$result_month.' '.$result_year.'</small></h1></div>');
   }
 
   function ElapsedTime($iSeconds) {
@@ -545,7 +532,7 @@
     foreach ($GLOBALS["aConfig"] as $sSiteCode => $aSite) {
       $sCSS = "";
       if ($GLOBALS["g_sConfig"] == $sSiteCode) {
-        $sCSS = " class=\"selected\"";
+        $sCSS = " class=\"active";
       }
       $aHTML[] = "<li> <a href=\"#\" onclick=\"ChangeSite('" . $sSiteCode . "')\">" .
                  (((isset($aSite["sitename"]) == true) && (strlen(trim($aSite["sitename"])) > 0)) ? $aSite["sitename"] : $aSite["siteurl"]) . "</a></li>";

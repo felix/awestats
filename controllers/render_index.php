@@ -102,9 +102,9 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
         <meta name="Description" content="Awestats">
         <meta name="robots" content="no-cache">
 
-        <title><?php echo str_replace("[SITE]", GetSiteName(), str_replace("[MONTH]", Lang(date("F", $g_aLogFiles[$g_iThisLog][0])), str_replace("[YEAR]", date("Y", $g_aLogFiles[$g_iThisLog][0]), Lang("Statistics for [SITE] in [MONTH] [YEAR]")))) ?></title>
+        <title><?php echo CONFIG_DEFAULT_TITLE; ?> - <?php echo str_replace("[SITE]", GetSiteName(), str_replace("[MONTH]", Lang(date("F", $g_aLogFiles[$g_iThisLog][0])), str_replace("[YEAR]", date("Y", $g_aLogFiles[$g_iThisLog][0]), Lang("Statistics for [SITE] in [MONTH] [YEAR]")))) ?></title>
         <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-        <!--<link rel="stylesheet" href="themes/<?php echo $g_aConfig["theme"] ?>/style.css" type="text/css" />-->
+        <link rel="stylesheet" href="/assets/style.css" type="text/css" />
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/jquery.tablesorter.js"></script>
         <script src="js/jquery.tablesorter.extensions.js"></script>
@@ -141,10 +141,10 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
           
         <div id="page-container" class="container">
 
-            <div id="header" class="navbar navbar-fixed-top">
+            <div id="header" class="navbar navbar-fixed-top navbar-inverse">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="brand" href="/index.php">Awestats</a>
+                        <a class="brand" href="/index.php"><?php echo CONFIG_DEFAULT_TITLE; ?></a>
                         <ul class="nav pull-right">
                             <li class="dropdown">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Sites <b class="caret"></b></a>
@@ -159,6 +159,11 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
                                 <ul class="dropdown-menu">
                                   <?php echo ToolChangeMonth();?>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="/index.php?action=logout">
+                                    <i class="icon-off icon-white"></i>
+                                </a>
                             </li>
                         </ul>
 
@@ -181,27 +186,27 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
             </div>
       <div id="summary" class="row">
           <div class="span12">
-<?php
-
-$sTemp = Lang("Last updated [DAYNAME], [DATE] [MONTH] [YEAR] at [TIME] [ELAPSEDTIME]. A total of [TOTALVISITORS] visitors ([UNIQUEVISITORS] unique) this month, an average of [DAILYAVERAGE] per day ([DAILYUNIQUE] unique).");
-$sTemp = str_replace("[DAYNAME]", "<span>" . Lang(date("l", $clsAWStats->dtLastUpdate)), $sTemp);
-$sTemp = str_replace("[YEAR]", date("Y", $clsAWStats->dtLastUpdate) . "</span>", $sTemp);
-$sTemp = str_replace("[DATE]", Lang(date("jS", $clsAWStats->dtLastUpdate)), $sTemp);
-$sTemp = str_replace("[MONTH]", Lang(date("F", $clsAWStats->dtLastUpdate)), $sTemp);
-$sTemp = str_replace("[TIME]", "<span>" . date("H:i", $clsAWStats->dtLastUpdate) . "</span>", $sTemp);
-$sTemp = str_replace("[ELAPSEDTIME]", ElapsedTime(time() - $clsAWStats->dtLastUpdate), $sTemp);
-$sTemp = str_replace("[TOTALVISITORS]", "<span>" . number_format($clsAWStats->iTotalVisits) . "</span>", $sTemp);
-$sTemp = str_replace("[UNIQUEVISITORS]", number_format($clsAWStats->iTotalUnique), $sTemp);
-$sTemp = str_replace("[DAILYAVERAGE]", "<span>" . number_format($iDailyVisitAvg, 1) . "</span>", $sTemp);
-$sTemp = str_replace("[DAILYUNIQUE]", number_format($iDailyUniqueAvg, 1), $sTemp);
-echo $sTemp;
-
-?>
+              <p class="lead">
+                  <?php
+                    $sTemp = Lang("Last updated [DAYNAME], [DATE] [MONTH] [YEAR] at [TIME] [ELAPSEDTIME]. A total of [TOTALVISITORS] visitors ([UNIQUEVISITORS] unique) this month, an average of [DAILYAVERAGE] per day ([DAILYUNIQUE] unique).");
+                    $sTemp = str_replace("[DAYNAME]", "<strong>" . Lang(date("l", $clsAWStats->dtLastUpdate)), $sTemp);
+                    $sTemp = str_replace("[YEAR]", date("Y", $clsAWStats->dtLastUpdate) . "</strong>", $sTemp);
+                    $sTemp = str_replace("[DATE]", Lang(date("jS", $clsAWStats->dtLastUpdate)), $sTemp);
+                    $sTemp = str_replace("[MONTH]", Lang(date("F", $clsAWStats->dtLastUpdate)), $sTemp);
+                    $sTemp = str_replace("[TIME]", "<strong>" . date("H:i", $clsAWStats->dtLastUpdate) . "</strong>", $sTemp);
+                    $sTemp = str_replace("[ELAPSEDTIME]", ElapsedTime(time() - $clsAWStats->dtLastUpdate), $sTemp);
+                    $sTemp = str_replace("[TOTALVISITORS]", "<strong>" . number_format($clsAWStats->iTotalVisits) . "</strong>", $sTemp);
+                    $sTemp = str_replace("[UNIQUEVISITORS]", number_format($clsAWStats->iTotalUnique), $sTemp);
+                    $sTemp = str_replace("[DAILYAVERAGE]", "<strong>" . number_format($iDailyVisitAvg, 1) . "</strong>", $sTemp);
+                    $sTemp = str_replace("[DAILYUNIQUE]", number_format($iDailyUniqueAvg, 1), $sTemp);
+                    echo $sTemp;
+                    ?>
+              </p>
         </div>
       </div>
       <div id="menu" class="row">
           <div class="span12">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-pills">
               <li id="tabthismonth"><a href="#" onclick="ChangeTab(this, 'thismonth.all')"><?php echo Lang("This Month"); ?></a></li>
               <li id="taballmonths"><a href="#"  onclick="ChangeTab(this, 'allmonths.all')"><?php echo Lang("All Months"); ?></a></li>
               <li id="tabtime"><a href="#"  onclick="ChangeTab(this, 'time')"><?php echo Lang("Hours"); ?></a></li>

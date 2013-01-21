@@ -37,8 +37,8 @@ var oPaging = {
 // jQuery methods
 $(document).ready(function() {
   var aCurrentView = g_sCurrentView.split(".");
-  $("#menu").children("ul:eq(0)").children("li").addClass("off");
-  $("#tab" + aCurrentView[0]).removeClass("off");
+  $("#menu").children("ul:eq(0)").children("li").removeClass("active");
+  $("#tab" + aCurrentView[0]).addClass("active");
   DrawPage(g_sCurrentView);
 
   // change language mouseover
@@ -74,8 +74,8 @@ function ChangeSite(sConfig) {
 }
 
 function ChangeTab(oSpan, sPage) {
-  $("#menu").children("ul:eq(0)").children("li").addClass("off");
-  $(oSpan).parent().removeClass("off");
+  $("#menu ul li").removeClass("active");
+  $(oSpan).parent().addClass("active");
   DrawPage(sPage);
 }
 
@@ -794,17 +794,17 @@ function DrawSubMenu(sMenu, sSelected) {
   var aMenu = [];
   for (sLabel in oMenu) {
     if (sSelected == sLabel) {
-      aMenu.push("<span class=\"submenuselect\" onclick=\"DrawPage('" + oMenu[sLabel] + "')\">" + Lang(sLabel) + "</span>");
+      aMenu.push("<li class=\"active\"><a href=\"#\" onclick=\"DrawPage('" + oMenu[sLabel] + "')\">" + Lang(sLabel) + "</a></li>");
     } else {
-      aMenu.push("<span class=\"submenu\" onclick=\"DrawPage('" + oMenu[sLabel] + "')\">" + Lang(sLabel) + "</span>");
+      aMenu.push("<li><a href=\"#\" class=\"submenu\" onclick=\"DrawPage('" + oMenu[sLabel] + "')\">" + Lang(sLabel) + "</a></li>");
     }
   }
-  return ("<div id=\"submenu\">" + aMenu.join(" | ") + "</div>");
+  return ("<ul id=\"submenu\" class=\"nav nav-tabs\">" + aMenu.join(" ") + "</ul>");
 }
 
 function DrawTable_AllMonths(sPage) {
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>";
   if (sPage == "all") {
     sHTML += "<th width=\"16%\">" + Lang("Month") + "</th>";
@@ -941,7 +941,7 @@ function DrawTable_Browser(sPage) {
   switch (sPage) {
     case "all":
       // create header
-      var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+      var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
         "<thead><tr>" +
           "<th width=\"1\">&nbsp;</th>" +
             "<th>" + Lang("Browser") + "</th>" +
@@ -963,7 +963,7 @@ function DrawTable_Browser(sPage) {
     break;
     case "family":
       // create header
-      var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+      var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
         "<thead><tr>" +
           "<th width=\"1\">&nbsp;</th>" +
             "<th>" + Lang("Browser Family") + "</th>" +
@@ -988,7 +988,7 @@ function DrawTable_Browser(sPage) {
     break;
     default:
       // create header
-      var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+      var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
         "<thead><tr>" +
           "<th width=\"1\">&nbsp;</th>" +
             "<th>" + Lang("Browser") + "</th>" +
@@ -1044,7 +1044,7 @@ function DrawTable_Country(sContinent) {
   aData       = oStatistics.oCountry.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>&nbsp;</th>" +
         "<th>" + Lang("Country") + "</th>" +
@@ -1095,7 +1095,7 @@ function DrawTable_CountryContinent() {
   var iOtherBW    = iTotalBW;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Continent") + "</th>" +
         "<th>" + Lang("Pages") + "</th>" +
@@ -1149,7 +1149,7 @@ function DrawTable_Filetypes() {
   aData           = oStatistics.oFiletypes.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Filetype") + "</th>" +
         "<th>" + Lang("Description") + "</th>" +
@@ -1194,7 +1194,7 @@ function DrawTable_OperatingSystems(sPage) {
   switch (sPage) {
     case "all":
       // create header
-      var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+      var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
         "<thead><tr>" +
           "<th width=\"1\">&nbsp;</th>" +
             "<th>" + Lang("Operating System") + "</th>" +
@@ -1216,7 +1216,7 @@ function DrawTable_OperatingSystems(sPage) {
     break;
     case "family":
       // create header
-      var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+      var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
         "<thead><tr>" +
           "<th width=\"1\">&nbsp;</th>" +
             "<th>" + Lang("Operating System Family") + "</th>" +
@@ -1241,7 +1241,7 @@ function DrawTable_OperatingSystems(sPage) {
     break;
     default:
       // create header
-      var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+      var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
         "<thead><tr>" +
           "<th width=\"1\">&nbsp;</th>" +
             "<th>" + Lang("Operating System") + "</th>" +
@@ -1297,7 +1297,7 @@ function DrawTable_PageRefs(sPage) {
   }
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Referrer") + "</th>" +
         "<th>" + Lang("Pages") + "</th>" +
@@ -1352,7 +1352,7 @@ function DrawTable_PageRefsSE(sPage) {
   aData       = oStatistics.oPageRefsSE.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th width=\"1\">&nbsp;</th>" +
         "<th>" + Lang("Search Engine") + "</th>" +
@@ -1392,7 +1392,7 @@ function DrawTable_Pages(aData) {
   var iTotalExit      = oStatistics.oPages.iTotalExit;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("URL") + "</th>" +
         "<th>" + Lang("Pages") + "</th>" +
@@ -1438,7 +1438,7 @@ function DrawTable_Robots() {
   aData           = oStatistics.oRobots.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Spider") + "</th>" +
         "<th>" + Lang("Hits") + "</th>" +
@@ -1487,7 +1487,7 @@ function DrawTable_Session() {
   var aData      = oStatistics.oSession.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Session Length") + "</th>" +
         "<th>" + Lang("Frequency") + "</th>" +
@@ -1544,7 +1544,7 @@ function DrawTable_Status() {
   aData           = oStatistics.oStatus.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Code") + "</th>" +
         "<th>" + Lang("Description") + "</th>" +
@@ -1584,7 +1584,7 @@ function DrawTable_Status404() {
   aData           = oStatistics.oStatus404.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("URL") + "</th>" +
         "<th>" + Lang("Hits") + "</th>" +
@@ -1625,7 +1625,7 @@ function DrawTable_ThisMonth() {
   aData           = oStatistics.oThisMonth.aData;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th width=\"15%\">" + Lang("Day") + "</th>" +
         "<th width=\"14%\">" + Lang("Date") + "</th>" +
@@ -1693,7 +1693,7 @@ function DrawTable_Time() {
   var iTotalNVBW      = oStatistics.oTime.iTotalNVBW;
 
   // create header
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th>" + Lang("Hour") + "</th>" +
         "<th class=\"noborder\">" + Lang("Pages") + "</th>" +
@@ -1972,17 +1972,17 @@ function PageLayout_Browser(sPage) {
     case "family":
       var sHTML = "<h2>" + Lang("Browser Families") + "</h2>" +
         DrawSubMenu("browser", "Browser Families") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     case "all":
       var sHTML = "<h2>" + Lang("All Browsers") + "</h2>" +
         DrawSubMenu("browser", "All Browsers") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     default:
       var sHTML = "<h2>" + Lang("Browser Family") + ": " + gc_aBrowserFamilyCaption[sPage] + "</h2>" +
         DrawSubMenu("browser", "") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   }
   $("#content").html(sHTML);
   if (aTable[0] == true) {
@@ -1998,7 +1998,7 @@ function PageLayout_Country(sPage) {
       var aTable = DrawTable_Country();
     var sHTML = "<h2>" + Lang("Visitors by Country") + "</h2>" +
       DrawSubMenu("country", "Countries") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" +
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" +
           aTable[1] +
             "</div>";
     $("#content").html(sHTML);
@@ -2010,7 +2010,7 @@ function PageLayout_Country(sPage) {
     case "continent":
       var sHTML = "<h2>" + Lang("Visitors by Continent") + "</h2>" +
         DrawSubMenu("country", "Continents") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" +
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" +
             DrawTable_CountryContinent() +
               "</div>";
     $("#content").html(sHTML);
@@ -2025,7 +2025,7 @@ function PageLayout_Country(sPage) {
     }
     var aTable = DrawTable_Country(sPage);
     sHTML += DrawSubMenu("country", sPage) +
-      "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" +
+      "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" +
         aTable[1] + "</div>";
     $("#content").html(sHTML);
     if (aTable[0] == true) {
@@ -2039,7 +2039,7 @@ function PageLayout_Country(sPage) {
 
 function PageLayout_Filetypes() {
   var aTable = DrawTable_Filetypes();
-  var sHTML = "<h2>" + Lang("Filetypes") + "</h2><div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+  var sHTML = "<h2>" + Lang("Filetypes") + "</h2><div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   $("#content").html(sHTML);
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 2:{sorter:"commaNumber"}, 3: { sorter: false }, 4:{sorter:'bandwidth'}, 5: { sorter: false }, 6:{sorter:'bandwidth'} }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2054,17 +2054,17 @@ function PageLayout_OperatingSystems(sPage) {
     case "family":
       var sHTML = "<h2>" + Lang("Operating System Families") + "</h2>" +
         DrawSubMenu("os", "Operating System Families") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     case "all":
       var sHTML = "<h2>" + Lang("Operating Systems") + "</h2>" +
         DrawSubMenu("os", "All Operating Systems") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     default:
       var sHTML = "<h2>" + Lang("Operating System Family") + ": " + gc_aOSFamilyCaption[sPage] + "</h2>" +
         DrawSubMenu("os", "") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   }
   $("#content").html(sHTML);
   if (aTable[0] == true) {
@@ -2080,25 +2080,25 @@ function PageLayout_PageRefs(sPage) {
       var aTable = DrawTable_PageRefs("all");
     var sHTML = "<h2>" + Lang("Referring Pages") + "</h2>" +
       DrawSubMenu("pagerefs", "All Referrers") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     case "domains":
       var aTable = DrawTable_PageRefs("domains");
     var sHTML = "<h2>" + Lang("Referring Domains") + "</h2>" +
       DrawSubMenu("pagerefs", "Referring Domains") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     case "top10":
       var aTable = DrawTable_PageRefs("top10");
     var sHTML = "<h2>" + Lang("Referring Pages") + "</h2>" +
       DrawSubMenu("pagerefs", "Top 10 Referrers") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
     case "top50":
       var aTable = DrawTable_PageRefs("top50");
     var sHTML = "<h2>" + Lang("Referring Pages") + "</h2>" +
       DrawSubMenu("pagerefs", "Top 50 Referrers") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     break;
   }
   $("#content").html(sHTML);
@@ -2113,7 +2113,7 @@ function PageLayout_PageRefsSE() {
   var aTable = DrawTable_PageRefsSE();
   var sHTML = "<h2>" + Lang("Referring Search Engines") + "</h2>" +
     DrawSubMenu("pagerefs", "Search Engines") +
-      "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+      "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   $("#content").html(sHTML);
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 0: { sorter: false }, 2:{sorter:"commaNumber"}, 3: { sorter: false }, 4:{sorter:"commaNumber"}, 5: { sorter: false } }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2159,7 +2159,7 @@ function PageLayout_Pages(sPage) {
   var aTable = DrawTable_Pages(aData);
   var sHTML = "<h2>" + Lang("Page Views") + "</h2>" +
     DrawSubMenu("pages", sSubMenu) +
-      "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+      "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   $("#content").html(sHTML);
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 2: { sorter: false }, 3:{sorter:'bandwidth'}, 4: { sorter: false }, 6: { sorter: false }, 8: { sorter: false } }, sortList: [aSort],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2170,7 +2170,7 @@ function PageLayout_Pages(sPage) {
 
 function PageLayout_Robots() {
   var aTable = DrawTable_Robots();
-  var sHTML = "<h2>" + Lang("Visiting Spiders") + "</h2><div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+  var sHTML = "<h2>" + Lang("Visiting Spiders") + "</h2><div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   $("#content").html(sHTML);
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 1:{sorter:"commaNumber"}, 2: { sorter: false }, 3:{sorter:'bandwidth'}, 4: { sorter: false }, 6:{sorter:"commaNumber"}, 7: { sorter: false } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2203,7 +2203,7 @@ function PageLayout_Searches(sPage) {
     case "keywords":
       var sHTML = "<h2>" + Lang("Keywords") + "</h2>" +
         DrawSubMenu("searches", "Keywords") +
-          "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + Paging_Keywords() + "</div>";
+          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + Paging_Keywords() + "</div>";
     $("#content").html(sHTML);
     DrawPie_Keywords();
     break;
@@ -2213,7 +2213,7 @@ function PageLayout_Searches(sPage) {
 
 function PageLayout_Session() {
   var aTable = DrawTable_Session();
-  var sHTML = "<h2>" + Lang("Session Duration") + "</h2><div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+  var sHTML = "<h2>" + Lang("Session Duration") + "</h2><div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
   $("#content").html(sHTML);
   if (aTable[0] == true) {
     //$(".tablesorter").tablesorter({ headers: { 0: { sorter: false }, 1:{sorter:"commaNumber"}, 2: { sorter: false } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2229,7 +2229,7 @@ function PageLayout_Status(sPage) {
       var aTable = DrawTable_Status404();
     var sHTML = "<h2>" + Lang("HTTP Status Codes") + ": 404s</h2>" +
       DrawSubMenu("status", "File Not Found URLs") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     $("#content").html(sHTML);
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter({ headers: { 1: { sorter: "commaNumber" } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2240,7 +2240,7 @@ function PageLayout_Status(sPage) {
       var aTable = DrawTable_Status();
     var sHTML = "<h2>" + Lang("HTTP Status Codes") + "</h2>" +
       DrawSubMenu("status", "Status Codes") +
-        "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + aTable[1] + "</div>";
+        "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
     $("#content").html(sHTML);
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter({ headers: { 2: { sorter: "commaNumber" }, 3:{ sorter: false }, 4: { sorter: "bandwidth" }, 5: { sorter: false } }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
@@ -2357,7 +2357,7 @@ function Paging_Keyphrases() {
 
   // create header
   var sDesc = (Lang("Showing [START] to [END] of [TOTAL] keyphrases")).replace("[TOTAL]", aData.length);
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th class=\"header" + sKeyphraseClass + "\" onclick=\"RedrawTable_Keyphrases('sSort', '" + sKeyphraseSort + "')\" width=\"80%\">" + Lang("Keyphrase") + "</th>" +
         "<th class=\"header" + sFrequencyClass + "\" onclick=\"RedrawTable_Keyphrases('sSort', '" + sFrequencySort + "')\" width=\"10%\">" + Lang("Frequency") + "</th>" +
@@ -2465,7 +2465,7 @@ function Paging_Keywords() {
 
   // create header
   var sDesc = (Lang("Showing [START] to [END] of [TOTAL] keywords")).replace("[TOTAL]", aData.length);
-  var sHTML = "<table class=\"tablesorter\" cellspacing=\"0\">\n" +
+  var sHTML = "<table class=\"tablesorter table\" cellspacing=\"0\">\n" +
     "<thead><tr>" +
       "<th class=\"header" + sKeywordClass + "\" onclick=\"RedrawTable_Keywords('sSort', '" + sKeywordSort + "')\" width=\"80%\">" + Lang("Keyword") + "</th>" +
         "<th class=\"header" + sFrequencyClass + "\" onclick=\"RedrawTable_Keywords('sSort', '" + sFrequencySort + "')\" width=\"10%\">" + Lang("Frequency") + "</th>" +
