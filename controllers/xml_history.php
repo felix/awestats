@@ -32,7 +32,7 @@ $g_sConfig = GetConfig();
 $g_aConfig = $aConfig[$g_sConfig];
 
 // get date range and valid log file
-$g_dtStatsMonth = ValidateDate($_GET["year"], $_GET["month"]);
+$g_dtStatsMonth = ValidateDate($year, $month);
 $g_aLogFiles = GetLogList($g_sConfig,
   $g_aConfig["statspath"],
   $g_aConfig["statsname"]);

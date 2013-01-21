@@ -102,19 +102,19 @@ function DisplayBandwidth(iBW) {
 }
 
 function DrawGraph(aItem, aValue, aInitial, sStyle) {
-  var r = Raphael("graph",970,150),
-  fin = function () {
-    this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
-  },
-  fout = function () {
-    this.flag.animate({opacity: 0}, 300, function () {this.remove();});
-  };
-
   if (sStyle == "bar") {
+    var r = Raphael("graph",970,150),
+    fin = function () {
+      this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+    },
+    fout = function () {
+      this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+    };
     var graph = r.g.barchart(0,0,960,140,[aValue],{stretch: true});
     graph.hover(fin,fout);
     graph.label([aItem],true);
   } else {
+    var r = Raphael("graph",970,150);
     var max = Math.max.apply(Math, aValue);
     var graph = r.g.linechart(0,0,960,140,aValue,[0,max]).hover(fin,fout);
   }
