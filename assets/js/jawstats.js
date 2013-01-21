@@ -43,10 +43,10 @@ $(document).ready(function() {
 
   // change language mouseover
   $("#toolLanguageButton").mouseover(function() {
-    $("#toolLanguageButton img").attr("src", "themes/" + sThemeDir + "/images/change_language_on.gif");
+    $("#toolLanguageButton img").attr("src", "assets/images/images/change_language_on.gif");
   });
   $("#toolLanguageButton").mouseout(function() {
-    $("#toolLanguageButton img").attr("src", "themes/" + sThemeDir + "/images/change_language.gif");
+    $("#toolLanguageButton img").attr("src", "assets/images/images/change_language.gif");
   });
 });
 
@@ -954,7 +954,7 @@ function DrawTable_Browser(sPage) {
     for (var iRow in aData) {
       iPercent = ((aData[iRow].iHits / iTotalHits) * 100);
       aHTML.push("<tr>" +
-                 "<td class=\"browserlogo\"><img src=\"themes/" + sThemeDir + "/browsers/" + aData[iRow].sFamily.replace(" ", "").replace("-", "").replace("\\", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\" /></td>" +
+                 "<td class=\"browserlogo\"><img src=\"assets/images/browsers/" + aData[iRow].sFamily.replace(" ", "").replace("-", "").replace("\\", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\" /></td>" +
                    "<td>" + aData[iRow].sBrowser + "</td>" +
                      "<td class=\"right\">" + NumberFormat(aData[iRow].iHits, 0) + "</td>" +
                        "<td class=\"noborder right\">" + iPercent.toFixed(1) + "%</td>" +
@@ -977,7 +977,7 @@ function DrawTable_Browser(sPage) {
       if (aFamily[iRow].iHits > 0) {
         iPercent = ((aFamily[iRow].iHits / iTotalHits) * 100);
         aHTML.push("<tr>" +
-                   "<td class=\"browserlogo\"><img src=\"themes/" + sThemeDir + "/browsers/" + aFamily[iRow].sBrowser.replace(" ", "").replace("-", "").replace("\\", "").toLowerCase() + ".gif\" alt=\"" + aFamily[iRow].sBrowser + "\"/></td>" +
+                   "<td class=\"browserlogo\"><img src=\"assets/images/browsers/" + aFamily[iRow].sBrowser.replace(" ", "").replace("-", "").replace("\\", "").toLowerCase() + ".gif\" alt=\"" + aFamily[iRow].sBrowser + "\"/></td>" +
                      "<td>" + gc_aBrowserFamilyCaption[aFamily[iRow].sBrowser] + " &nbsp;<span class=\"fauxlink tiny\" onclick=\"DrawPage('browser." +
                                                                                                                                           aFamily[iRow].sBrowser  + "');\">&raquo;</span>" + "</td>" +
                                                                                                                                             "<td class=\"right\">" + NumberFormat(aFamily[iRow].iHits, 0) + "</td>" +
@@ -1012,7 +1012,7 @@ function DrawTable_Browser(sPage) {
         iTotalPercent = ((aData[iRow].iHits / iTotalHits) * 100);
         iFamilyPercent = ((aData[iRow].iHits / iFamilyTotalHits) * 100);
         aHTML.push("<tr>" +
-                   "<td class=\"browserlogo\"><img src=\"themes/" + sThemeDir + "/browsers/" + aData[iRow].sFamily.replace(" ", "").replace("-", "").replace("\\", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\"/></td>" +
+                   "<td class=\"browserlogo\"><img src=\"assets/images/browsers/" + aData[iRow].sFamily.replace(" ", "").replace("-", "").replace("\\", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\"/></td>" +
                      "<td>" + aData[iRow].sBrowser + "</td>" +
                        "<td class=\"right\">" + NumberFormat(aData[iRow].iHits, 0) + "</td>" +
                          "<td class=\"noborder right\">" + iFamilyPercent.toFixed(1) + "%</td>" +
@@ -1065,7 +1065,7 @@ function DrawTable_Country(sContinent) {
     }
     if ((typeof sContinent == "undefined") || (aData[iRow].sContinent == sContinent)) {
       aHTML.push("<tr>" +
-                 "<td class=\"countryflag\"><img src=\"themes/" + sThemeDir + "/flags/" + aData[iRow].sCountryCode + ".gif\" alt=\"" + aData[iRow].sCountryName + "\" /></td>" +
+                 "<td class=\"countryflag\"><img src=\"assets/images/flags/" + aData[iRow].sCountryCode + ".gif\" alt=\"" + aData[iRow].sCountryName + "\" /></td>" +
                    "<td>" + Lang(aData[iRow].sCountryName) + "</td>" +
                      "<td class=\"noborder right\">" + NumberFormat(aData[iRow].iPages, 0) + "</td>" +
                        "<td class=\"right\">" + (SafeDivide(aData[iRow].iPages, iTotalPages) * 100).toFixed(1) + "%</td>" +
@@ -1207,7 +1207,7 @@ function DrawTable_OperatingSystems(sPage) {
     for (var iRow in aData) {
       var iPercent = ((aData[iRow].iHits / iTotalHits) * 100);
       aHTML.push("<tr>" +
-                 "<td class=\"oslogo\"><img src=\"themes/" + sThemeDir + "/os/" + aData[iRow].sFamily.replace(" ", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\" /></td>" +
+                 "<td class=\"oslogo\"><img src=\"assets/images/os/" + aData[iRow].sFamily.replace(" ", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\" /></td>" +
                    "<td>" + aData[iRow].sOperatingSystem + "</td>" +
                      "<td class=\"right\">" + NumberFormat(aData[iRow].iHits, 0) + "</td>" +
                        "<td class=\"noborder right\">" + iPercent.toFixed(1) + "%</td>" +
@@ -1230,7 +1230,7 @@ function DrawTable_OperatingSystems(sPage) {
       if (aFamily[iRow].iHits > 0) {
         var iPercent = ((aFamily[iRow].iHits / iTotalHits) * 100);
         aHTML.push("<tr>" +
-                   "<td class=\"oslogo\"><img src=\"themes/" + sThemeDir + "/os/" + aFamily[iRow].sOperatingSystem.replace(" ", "").toLowerCase() + ".gif\" alt=\"" + aFamily[iRow].sOperatingSystem + "\" /></td>" +
+                   "<td class=\"oslogo\"><img src=\"assets/images/os/" + aFamily[iRow].sOperatingSystem.replace(" ", "").toLowerCase() + ".gif\" alt=\"" + aFamily[iRow].sOperatingSystem + "\" /></td>" +
                      "<td>" + gc_aOSFamilyCaption[aFamily[iRow].sOperatingSystem] + " &nbsp;<span class=\"fauxlink tiny\" onclick=\"DrawPage('os." +
                                                                                                                                              aFamily[iRow].sOperatingSystem + "');\">&raquo;</span>" + "</td>" +
                                                                                                                                                "<td class=\"right\">" + NumberFormat(aFamily[iRow].iHits, 0) + "</td>" +
@@ -1265,7 +1265,7 @@ function DrawTable_OperatingSystems(sPage) {
         iTotalPercent = ((aData[iRow].iHits / iTotalHits) * 100);
         iFamilyPercent = ((aData[iRow].iHits / iFamilyTotalHits) * 100);
         aHTML.push("<tr>" +
-                   "<td class=\"oslogo\"><img src=\"themes/" + sThemeDir + "/os/" + aData[iRow].sFamily.replace(" ", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\" /></td>" +
+                   "<td class=\"oslogo\"><img src=\"assets/images/os/" + aData[iRow].sFamily.replace(" ", "").toLowerCase() + ".gif\" alt=\"" + aData[iRow].sFamily + "\" /></td>" +
                      "<td>" + aData[iRow].sOperatingSystem + "</td>" +
                        "<td class=\"right\">" + NumberFormat(aData[iRow].iHits, 0) + "</td>" +
                          "<td class=\"noborder right\">" + iFamilyPercent.toFixed(1) + "%</td>" +
@@ -2404,19 +2404,19 @@ function Paging_Keyphrases() {
     var iMaxPage = Math.floor((aData.length - 1) / oPaging.oKeyphrases.iRowsPerPage);
     var sNavigation = "<div id=\"paging\"><span>" + sDesc + "</span>";
     if (oPaging.oKeyphrases.iCurrPage > 0) {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/first.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/first_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/first.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', 0)\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/prev.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/prev_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/prev.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', " + (oPaging.oKeyphrases.iCurrPage - 1) + ")\" />";
+      sNavigation += "<img src=\"assets/images/paging/first.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/first_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/first.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', 0)\" />" +
+        "<img src=\"assets/images/paging/prev.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/prev_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/prev.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', " + (oPaging.oKeyphrases.iCurrPage - 1) + ")\" />";
     } else {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/first_off.gif\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/prev_off.gif\" />";
+      sNavigation += "<img src=\"assets/images/paging/first_off.gif\" />" +
+        "<img src=\"assets/images/paging/prev_off.gif\" />";
     }
     sNavigation += "<span><input type=\"text\" value=\"" + (oPaging.oKeyphrases.iCurrPage + 1) + "\" onkeypress=\"return PagingInputNumber(event, this, 'keyphrases');\" />" + " / " + (iMaxPage + 1) + "</span>";
     if (oPaging.oKeyphrases.iCurrPage < iMaxPage) {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/next.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/next_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/next.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', " + (oPaging.oKeyphrases.iCurrPage + 1) + ")\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/last.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/last_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/last.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', " + iMaxPage + ")\" />";
+      sNavigation += "<img src=\"assets/images/paging/next.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/next_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/next.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', " + (oPaging.oKeyphrases.iCurrPage + 1) + ")\" />" +
+        "<img src=\"assets/images/paging/last.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/last_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/last.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keyphrases('iCurrPage', " + iMaxPage + ")\" />";
     } else {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/next_off.gif\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/last_off.gif\" />";
+      sNavigation += "<img src=\"assets/images/paging/next_off.gif\" />" +
+        "<img src=\"assets/images/paging/last_off.gif\" />";
     }
     sNavigation += "</div>";
     return (sHTML + aHTML.join("\n") + "</tbody></table>" + sNavigation);
@@ -2512,19 +2512,19 @@ function Paging_Keywords() {
     var iMaxPage = Math.floor((aData.length - 1) / oPaging.oKeywords.iRowsPerPage);
     var sNavigation = "<div id=\"paging\"><span>" + sDesc + "</span>";
     if (oPaging.oKeywords.iCurrPage > 0) {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/first.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/first_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/first.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', 0)\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/prev.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/prev_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/prev.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', " + (oPaging.oKeywords.iCurrPage - 1) + ")\" />";
+      sNavigation += "<img src=\"assets/images/paging/first.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/first_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/first.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', 0)\" />" +
+        "<img src=\"assets/images/paging/prev.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/prev_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/prev.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', " + (oPaging.oKeywords.iCurrPage - 1) + ")\" />";
     } else {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/first_off.gif\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/prev_off.gif\" />";
+      sNavigation += "<img src=\"assets/images/paging/first_off.gif\" />" +
+        "<img src=\"assets/images/paging/prev_off.gif\" />";
     }
     sNavigation += "<span><input type=\"text\" value=\"" + (oPaging.oKeywords.iCurrPage + 1) + "\" onkeypress=\"return PagingInputNumber(event, this, 'keywords');\" />" + " / " + (iMaxPage + 1) + "</span>";
     if (oPaging.oKeywords.iCurrPage < iMaxPage) {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/next.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/next_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/next.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', " + (oPaging.oKeywords.iCurrPage + 1) + ")\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/last.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/last_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/last.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', " + iMaxPage + ")\" />";
+      sNavigation += "<img src=\"assets/images/paging/next.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/next_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/next.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', " + (oPaging.oKeywords.iCurrPage + 1) + ")\" />" +
+        "<img src=\"assets/images/paging/last.gif\" onmouseover=\"this.src='themes/" + sThemeDir + "/paging/last_on.gif'\" onmouseout=\"this.src='themes/" + sThemeDir + "/paging/last.gif'\" style=\"cursor: pointer;\" onclick=\"RedrawTable_Keywords('iCurrPage', " + iMaxPage + ")\" />";
     } else {
-      sNavigation += "<img src=\"themes/" + sThemeDir + "/paging/next_off.gif\" />" +
-        "<img src=\"themes/" + sThemeDir + "/paging/last_off.gif\" />";
+      sNavigation += "<img src=\"assets/images/paging/next_off.gif\" />" +
+        "<img src=\"assets/images/paging/last_off.gif\" />";
     }
     sNavigation += "</div>";
     return (sHTML + aHTML.join("\n") + "</tbody></table>" + sNavigation);
@@ -2998,7 +2998,7 @@ function PopulateData_PageRefsSE() {
           if (gc_aSearchEngines[i].sCode == sReferrer) {
             sReferrer = gc_aSearchEngines[i].sName;
             sURL      = gc_aSearchEngines[i].sURL;
-            sImage = "<img src=\"themes/" + sThemeDir + "/searchengines/" + gc_aSearchEngines[i].sImage + ".gif\" alt=\"" + sReferrer + "\" />";
+            sImage = "<img src=\"assets/images/searchengines/" + gc_aSearchEngines[i].sImage + ".gif\" alt=\"" + sReferrer + "\" />";
             break;
           }
         }
