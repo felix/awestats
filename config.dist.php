@@ -6,6 +6,7 @@ define('CONFIG_DEFAULT_LANGUAGE', 'en-gb');
 define('CONFIG_DEFAULT_VIEW', 'thismonth.all');
 define('CONFIG_CHANGE_SITE', true);
 define('CONFIG_UPDATE_SITE', true);
+define('CONFIG_SESSION_LIFETIME', 600);
 
 // db settings
 define('BASE_URL', 'awestats.example');

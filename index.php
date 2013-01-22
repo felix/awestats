@@ -12,7 +12,7 @@ try {
     $backend = new PHPMysqlSessionBackend(DB_USER, DB_PASSWORD, DB_NAME);
 
     $session = new Session($backend);
-    $session->configure('session-awestats', BASE_URL);
+    $session->configure('session-awestats', BASE_URL, '/', CONFIG_SESSION_LIFETIME);
     $session->start();
 
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
