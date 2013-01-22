@@ -90,6 +90,10 @@ if (isset($_GET['view'])) {
 require_once "classes/clsAWStats.php";
 
 switch ($action) {
+    case 'logout':
+        $session->destroy();
+        require 'controllers/render_login.php';
+        break;
     case 'history':
         require 'controllers/xml_history.php';
         break;
