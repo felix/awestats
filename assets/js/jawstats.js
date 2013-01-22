@@ -128,7 +128,11 @@ function DrawGraph_AllMonths() {
                (oStatistics.oAllMonths.aData[iIndex].dtDate.getFullYear()).toString().substr(2));
     aValue.push(oStatistics.oAllMonths.aData[iIndex].iVisits);
   }
-  DrawGraph(aItem, aValue, [], "line");
+  if(oStatistics.oAllMonths.aData.length <= 1) {
+      DrawGraph(aItem, aValue, [], "bar");
+  } else {
+    DrawGraph(aItem, aValue, [], "line");
+  }
 }
 
 function DrawGraph_ThisMonth() {
