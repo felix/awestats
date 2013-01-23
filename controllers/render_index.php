@@ -107,11 +107,12 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="/assets/js/jquery.tablesorter.js"></script>
         <script src="/assets/js/jquery.tablesorter.extensions.js"></script>
-        <script src="/assets/js/raphael.js"></script>
-        <script src="/assets/js/g.raphael.js"></script>
-        <script src="/assets/js/g.bar.js"></script>
-        <script src="/assets/js/g.line.js"></script>
-        <script src="/assets/js/g.pie.js"></script>
+        <script src="/assets/js/raphael-min.js"></script>
+        <script src="/assets/js/g.raphael-min.js"></script>
+        <script src="/assets/js/g.bar-min.js"></script>
+        <script src="/assets/js/g.line-min.js"></script>
+        <script src="/assets/js/g.pie-min.js"></script>
+        <script src="/assets/js/g.dot-min.js"></script>
         <script src="/assets/js/constants.js?<?php echo $gc_sJavascriptVersion ?>"></script>
         <script src="/assets/js/jawstats.js?<?php echo $gc_sJavascriptVersion ?>"></script>
         
@@ -228,7 +229,7 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
             &nbsp;
           </div>
         </div>
-        
+            
     </div>
     <div id="footer" class="footer">
             <?php echo DrawFooter(); ?>
