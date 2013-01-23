@@ -112,7 +112,7 @@ function DrawGraph(aItem, aValue, aInitial, sStyle) {
     };
     var graph = r.barchart(0,0,960,140,[aValue],{stretch: true});
     graph.hover(fin,fout);
-    //graph.label([aItem],true);
+    graph.label([aItem],true);
   } else {
     var aIndex = [];
     for (x in aItem) {
