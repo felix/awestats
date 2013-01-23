@@ -114,9 +114,32 @@ function DrawGraph(aItem, aValue, aInitial, sStyle) {
     graph.hover(fin,fout);
     graph.label([aItem],true);
   } else {
+    var aIndex = [];
+    for (x in aItem) {
+      aIndex.push(x);
+    }
+
+    var options = {
+      axis: "0 0 1 1", // Where to put the labels (trbl)
+      axisxstep: 10 // How many x interval labels to render (axisystep does the same for the y axis)
+    };
+
     var r = Raphael("graph",970,150);
     var max = Math.max.apply(Math, aValue);
-    var graph = r.g.linechart(0,0,960,140,aValue,[0,max]).hover(fin,fout);
+    var chart = r.g.linechart(50,0,960,140,aIndex,[aValue], options);
+   
+ // Modify the x axis labels
+
+   var xText = chart.axis[0].text.items;
+   for(var i in xText){ // Iterate through the array of dom elems, the current dom elem will be i
+      if(i == 0) {
+        var x_integer = 1;
+      } else {
+        var x_integer = parseInt(xText[i].attr('text'));
+      }
+      xText[i].attr({'text': aItem[x_integer]}); // Set the text of the current elem with the result
+   };
+    
   }
 }
 
@@ -124,9 +147,9 @@ function DrawGraph_AllMonths() {
   var aItem = [];
   var aValue = [];
   for (var iIndex in oStatistics.oAllMonths.aData) {
-    aItem.push(Lang(gc_aMonthName[oStatistics.oAllMonths.aData[iIndex].dtDate.getMonth()].substr(0,3)) + " '" +
+    	aItem.push(Lang(gc_aMonthName[oStatistics.oAllMonths.aData[iIndex].dtDate.getMonth()].substr(0,3)) + " '" +
                (oStatistics.oAllMonths.aData[iIndex].dtDate.getFullYear()).toString().substr(2));
-    aValue.push(oStatistics.oAllMonths.aData[iIndex].iVisits);
+    	aValue.push(oStatistics.oAllMonths.aData[iIndex].iVisits);
   }
   if(oStatistics.oAllMonths.aData.length <= 1) {
       DrawGraph(aItem, aValue, [], "bar");
