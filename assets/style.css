@@ -12,3 +12,6 @@ body {
 .hidden {
   display: none;
 }
+.pie {
+  height: 450px;
+}

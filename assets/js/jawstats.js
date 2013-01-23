@@ -105,14 +105,14 @@ function DrawGraph(aItem, aValue, aInitial, sStyle) {
   if (sStyle == "bar") {
     var r = Raphael("graph",970,150),
     fin = function () {
-      this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+      this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
     },
     fout = function () {
       this.flag.animate({opacity: 0}, 300, function () {this.remove();});
     };
-    var graph = r.g.barchart(0,0,960,140,[aValue],{stretch: true});
+    var graph = r.barchart(0,0,960,140,[aValue],{stretch: true});
     graph.hover(fin,fout);
-    graph.label([aItem],true);
+    //graph.label([aItem],true);
   } else {
     var aIndex = [];
     for (x in aItem) {
@@ -126,7 +126,7 @@ function DrawGraph(aItem, aValue, aInitial, sStyle) {
 
     var r = Raphael("graph",970,150);
     var max = Math.max.apply(Math, aValue);
-    var chart = r.g.linechart(50,0,960,140,aIndex,[aValue], options);
+    var chart = r.linechart(50,0,960,140,aIndex,[aValue], options);
    
  // Modify the x axis labels
 
@@ -356,14 +356,26 @@ function DrawPage(sPage) {
 }
 
 function DrawPie(iTotal, aItem, aValue) {
-  var r = Raphael("pie",200,380);
-  var pie = r.g.piechart(100,100,90, aValue, {legend: aItem, legendpos: "south"});
-  pie.hover(function () {
-    this.sector.stop();
-    this.sector.scale(1.1, 1.1, this.cx, this.cy);
-  }, function () {
-    this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
-  });
+    
+    var r = Raphael("pie"),
+            pie = r.piechart(100, 100, 90, aValue, { legend: aItem, legendpos: "east"});
+    
+    pie.hover(function() {
+        this.sector.stop();
+        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+        if (this.label) {
+            this.label[0].stop();
+            this.label[0].attr({r: 7.5});
+            this.label[1].attr({"font-weight": 800});
+        }
+    }, function() {
+        this.sector.animate({transform: 's1 1 ' + this.cx + ' ' + this.cy}, 500, "bounce");
+        if (this.label) {
+            this.label[0].animate({r: 5}, 500, "bounce");
+            this.label[1].attr({"font-weight": 400});
+        }
+    });
+
 }
 
 function DrawPie_Browser(sPage) {
@@ -1999,24 +2011,24 @@ function PageLayout_Browser(sPage) {
     case "family":
       var sHTML = "<h2>" + Lang("Browser Families") + "</h2>" +
         DrawSubMenu("browser", "Browser Families") +
-          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span5\">&nbsp;</div><div class=\"tablePie span6\">" + aTable[1] + "</div>";
     break;
     case "all":
       var sHTML = "<h2>" + Lang("All Browsers") + "</h2>" +
         DrawSubMenu("browser", "All Browsers") +
-          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span5\">&nbsp;</div><div class=\"tablePie span6\">" + aTable[1] + "</div>";
     break;
     default:
       var sHTML = "<h2>" + Lang("Browser Family") + ": " + gc_aBrowserFamilyCaption[sPage] + "</h2>" +
         DrawSubMenu("browser", "") +
-          "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + aTable[1] + "</div>";
+          "<div id=\"pie\" class=\"pie span5\">&nbsp;</div><div class=\"tablePie span6\">" + aTable[1] + "</div>";
   }
   $("#content").html(sHTML);
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 0: { sorter: false }, 2:{sorter:"commaNumber"}, 3: { sorter: false } }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_Browser(sPage);
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Country(sPage) {
@@ -2032,7 +2044,8 @@ function PageLayout_Country(sPage) {
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter( { headers: { 0:{sorter:false},2:{sorter:"commaNumber"},3:{sorter:false},4:{sorter:"commaNumber"},5:{sorter:false},6:{sorter:'bandwidth'},7:{sorter:false} }, sortList: [[2,1]], textExtraction:function(node){return node.innerHTML.replace(',','');}, widgets: ['zebra'] } );
     }
-    DrawPie_Country();
+  $("#content").show();  
+  DrawPie_Country();
     break;
     case "continent":
       var sHTML = "<h2>" + Lang("Visitors by Continent") + "</h2>" +
@@ -2042,6 +2055,7 @@ function PageLayout_Country(sPage) {
               "</div>";
     $("#content").html(sHTML);
     $(".tablesorter").tablesorter( { headers: { 1:{sorter:"commaNumber"}, 2: { sorter: false }, 3:{sorter:"commaNumber"}, 4: { sorter: false },5:{sorter:'bandwidth'}, 6: { sorter: false } }, sortList: [[1,1]], textExtraction: function(node) { return node.innerHTML.replace(',', '');}, widgets: ['zebra'] } );
+    $("#content").show();
     DrawPie_CountryContinent();
     break;
     default:
@@ -2058,10 +2072,11 @@ function PageLayout_Country(sPage) {
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter( { headers: { 0:{sorter:false},2:{sorter:"commaNumber"},3:{sorter:false},4:{sorter:"commaNumber"},5:{sorter:false},6:{sorter:'bandwidth'},7:{sorter:false } }, sortList: [[2,1]], textExtraction: function(node) { return node.innerHTML.replace(',', '');}, widgets: ['zebra'] } );
     }
+    $("#content").show();
     DrawPie_Country(sPage);
     break;
   }
-  $("#content").fadeIn(g_iFadeSpeed);
+  
 }
 
 function PageLayout_Filetypes() {
@@ -2071,8 +2086,8 @@ function PageLayout_Filetypes() {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 2:{sorter:"commaNumber"}, 3: { sorter: false }, 4:{sorter:'bandwidth'}, 5: { sorter: false }, 6:{sorter:'bandwidth'} }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_Filetypes();
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_OperatingSystems(sPage) {
@@ -2097,8 +2112,8 @@ function PageLayout_OperatingSystems(sPage) {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 0: { sorter: false }, 2: { sorter: "commaNumber" }, 3: { sorter: false }, 4: { sorter: false } }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_OperatingSystems(sPage);
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_PageRefs(sPage) {
@@ -2132,8 +2147,8 @@ function PageLayout_PageRefs(sPage) {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 1:{sorter:"commaNumber"}, 2: { sorter: false }, 3:{sorter:"commaNumber"}, 4: { sorter: false } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_PageRefs(sPage);
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_PageRefsSE() {
@@ -2145,8 +2160,8 @@ function PageLayout_PageRefsSE() {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 0: { sorter: false }, 2:{sorter:"commaNumber"}, 3: { sorter: false }, 4:{sorter:"commaNumber"}, 5: { sorter: false } }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_PageRefsSE();
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Pages(sPage) {
@@ -2191,8 +2206,8 @@ function PageLayout_Pages(sPage) {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 2: { sorter: false }, 3:{sorter:'bandwidth'}, 4: { sorter: false }, 6: { sorter: false }, 8: { sorter: false } }, sortList: [aSort],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_Pages(aData, iPieTotal, sPieItem);
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Robots() {
@@ -2202,8 +2217,8 @@ function PageLayout_Robots() {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers: { 1:{sorter:"commaNumber"}, 2: { sorter: false }, 3:{sorter:'bandwidth'}, 4: { sorter: false }, 6:{sorter:"commaNumber"}, 7: { sorter: false } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_Robots();
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Searches(sPage) {
@@ -2213,12 +2228,14 @@ function PageLayout_Searches(sPage) {
         DrawSubMenu("searches", "Keyphrases Tag Cloud") +
           "<div class=\"tagcloud\">" + TagCloud("sPhrase", oStatistics.oKeyphrases, 75) + "</div>";
     $("#content").html(sHTML);
+    $("#content").show();
     break;
     case "keyphrases":
       var sHTML = "<h2>" + Lang("Keyphrases") + "</h2>" +
         DrawSubMenu("searches", "Keyphrases") +
           "<div id=\"pie\" class=\"pie\">&nbsp;</div><div class=\"tablePie\">" + Paging_Keyphrases() + "</div>";
     $("#content").html(sHTML);
+    $("#content").show();
     DrawPie_Keyphrases();
     break;
     case "keywordcloud":
@@ -2226,16 +2243,17 @@ function PageLayout_Searches(sPage) {
         DrawSubMenu("searches", "Keywords Tag Cloud") +
           "<div class=\"tagcloud\">" + TagCloud("sWord", oStatistics.oKeywords, 150) + "</div>";
     $("#content").html(sHTML);
+    $("#content").show();
     break;
     case "keywords":
       var sHTML = "<h2>" + Lang("Keywords") + "</h2>" +
         DrawSubMenu("searches", "Keywords") +
           "<div id=\"pie\" class=\"pie span4\">&nbsp;</div><div class=\"tablePie span7\">" + Paging_Keywords() + "</div>";
     $("#content").html(sHTML);
+    $("#content").show();
     DrawPie_Keywords();
     break;
   }
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Session() {
@@ -2246,8 +2264,8 @@ function PageLayout_Session() {
     //$(".tablesorter").tablesorter({ headers: { 0: { sorter: false }, 1:{sorter:"commaNumber"}, 2: { sorter: false } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
     $(".tablesorter").tablesorter({ headers: { 1:{sorter:"commaNumber"}, 2: { sorter: false } }, sortList: [[0,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawPie_Session();
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Status(sPage) {
@@ -2261,6 +2279,7 @@ function PageLayout_Status(sPage) {
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter({ headers: { 1: { sorter: "commaNumber" } }, sortList: [[1,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
     }
+    $("#content").show();
     DrawPie_Status404(sPage);
     break;
     default:
@@ -2272,12 +2291,13 @@ function PageLayout_Status(sPage) {
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter({ headers: { 2: { sorter: "commaNumber" }, 3:{ sorter: false }, 4: { sorter: "bandwidth" }, 5: { sorter: false } }, sortList: [[2,1]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
     }
+    $("#content").show();
     DrawPie_Status(sPage);
   }
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_ThisMonth(sPage) {
+  $("#content").show();
   switch (sPage) {
     case "all":
       var aTable = DrawTable_ThisMonth();
@@ -2303,7 +2323,6 @@ function PageLayout_ThisMonth(sPage) {
       Misc_ThisMonthCalendar("Calendar of Visitors this Month", "Calendar of Visitors", "iVisits");
     break;
   }
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Time(sPage) {
@@ -2315,8 +2334,8 @@ function PageLayout_Time(sPage) {
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers:{1:{sorter:"commaNumber"},2:{sorter:false},3:{sorter:false},4:{sorter:"commaNumber"},5:{sorter:false},6:{sorter:false},7:{sorter:'bandwidth'},8:{sorter:false},9:{sorter:false},10:{sorter:"commaNumber"},11:{sorter:"commaNumber"},12:{sorter:'bandwidth'}},sortList: [[0,0]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
+  $("#content").show();
   DrawGraph_Time();
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PagingInputNumber(oEvent, oInput, sType) {
