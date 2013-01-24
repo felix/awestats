@@ -260,8 +260,7 @@
   function DrawHeader($dtDate) {
     
             $result_month = Lang(date("F", $dtDate));
-            $result_site = (GetSiteName() . "<a href=\"" . $GLOBALS["g_aConfig"]["siteurl"] .
-                            "\" target=\"_blank\"><img src=\"themes/default/images/external_link.png\" class=\"externallink\" /></a>");
+            $result_site = (GetSiteName());
             $result_year = date("Y", $dtDate);
            
     return ('<div class="page-header"><h1>'.$result_site.' <small>'.$result_month.' '.$result_year.'</small></h1></div>');
