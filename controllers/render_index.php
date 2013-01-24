@@ -146,13 +146,15 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
                     <div class="container">
                         <a class="brand" href="/index.php"><?php echo CONFIG_DEFAULT_TITLE; ?></a>
                         <ul class="nav pull-right">
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Sites <b class="caret"></b></a>
+                            <?php if ((CONFIG_CHANGE_SITE == true) && (count($GLOBALS["aConfig"]) > 2)) {?>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Sites <b class="caret"></b></a>
 
-                                <ul class="dropdown-menu">
-                                  <?php echo ToolChangeSite();?>
-                                </ul>
-                            </li>
+                                    <ul class="dropdown-menu">
+                                      <?php echo ToolChangeSite();?>
+                                    </ul>
+                                </li>
+                            <?}?>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Année - <?php echo date("Y", $g_aLogFiles[$g_iThisLog][0]) ?> <b class="caret"></b></a>
 
