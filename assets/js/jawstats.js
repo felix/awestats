@@ -1841,7 +1841,8 @@ function Misc_ThisMonthCalendar(sHeadline, sSubMenu, sDataItem) {
                                   var iLastWeek = getWeekNr(dtLastDayOfMonth);
 
                                   // create table
-                                  var sHTML = "<table class=\"calendar\"><tbody>" +
+                                  var sHTML = "<div id=\"graph\" class=\"calGraph\">&nbsp;</div>"
+                                  sHTML += "<table class=\"calendar table\"><tbody>" +
                                     "<tr>" +
                                       "<td class=\"labelTop\">&nbsp;</td>" +
                                         "<td class=\"labelTop\">" + Lang("Monday") + "</td>" +
@@ -1872,10 +1873,6 @@ function Misc_ThisMonthCalendar(sHeadline, sSubMenu, sDataItem) {
                                                             "</tr>";
                                   }
                                   sHTML += "<tr>" +
-                                    "<td>&nbsp;</td>" +
-                                      "<td colspan=\"7\" id=\"graph\" class=\"calGraph\">&nbsp;</td>" +
-                                        "<td colspan=\"3\">&nbsp;</td>" +
-                                          "</tr><tr>" +
                                             "<td class=\"labelSide\">" + Lang("Day of Week Total") + "</td>" +
                                               "<td id=\"calTotDay1\" class=\"calTotDay\">&nbsp;</td>" +
                                                 "<td id=\"calTotDay2\" class=\"calTotDay\">&nbsp;</td>" +
@@ -1978,7 +1975,7 @@ function Misc_ThisMonthCalendar(sHeadline, sSubMenu, sDataItem) {
                                     SafeDivide(aDay[5].iTotal, aDay[5].iCount),
                                     SafeDivide(aDay[6].iTotal, aDay[6].iCount),
                                     SafeDivide(aDay[0].iTotal, aDay[0].iCount)];
-                                    DrawGraph(["","","","","","",""], aGraphValue, aGraphItem, "bar");
+                                    DrawGraph(aGraphItem, aGraphValue, aGraphItem, "bar");
 }
 
 function PageLayout_AllMonths(sPage) {
