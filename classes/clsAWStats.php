@@ -482,36 +482,43 @@
     return implode($aHTML, "\n");
   }
 
-  function ToolChangeMonth() {
+  function ToolChangeYear() {
     $aHTML = array();
 
     //loop through years
     for ($iYear = date("Y", $GLOBALS["g_aLogFiles"][0][0]); $iYear >= date("Y", $GLOBALS["g_aLogFiles"][count($GLOBALS["g_aLogFiles"]) - 1][0]); $iYear--) {
+          $aHTML[] = "<li><a href=\"#\" onclick='ChangeYear(" . date("Y", $iYear) . ")'>" . $iYear . "</a></li>";
+    }
 
-      // loop through months
-      for ($iMonth = 1; $iMonth < 13; $iMonth++) {
+    return implode($aHTML, "\n");
+  }
+  
+  function ToolChangeMonth() {
+    $aHTML = array();
+    $iYear = date("Y", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]);
+    // loop through months
+    for ($iMonth = 1; $iMonth < 13; $iMonth++) {
         $dtTemp = mktime(0, 0, 0, $iMonth, 1, $iYear);
         $bExists = false;
         foreach ($GLOBALS["g_aLogFiles"] as $aLog) {
-          if (($aLog[0] == $dtTemp) && ($aLog[1] == true)) {
-            $bExists = true;
-            break;
-          }
+            if (($aLog[0] == $dtTemp) && ($aLog[1] == true)) {
+                $bExists = true;
+                break;
+            }
         }
         if ($bExists == true) {
-          $sCSS = "";
-          if ((date("n", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iMonth) && (date("Y", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iYear)) {
-            $sCSS .= " selected";
-          }
-          $aHTML[] = "<li><a href=\"#\" onclick='ChangeMonth(" . date("Y,n", $dtTemp) . ")'>" . Lang(date("F", $dtTemp)) . "</a></li>";
+            $sCSS = "";
+            if ((date("n", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iMonth) && (date("Y", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iYear)) {
+                $sCSS .= " selected";
+            }
+            $aHTML[] = "<li><a href=\"#\" onclick='ChangeMonth(" . date("n", $dtTemp) . ")'>" . Lang(date("m", $dtTemp)) . "</a></li>";
         } else {
-          if ($dtTemp > time()) {
-            $aHTML[] = "";
-          } else {
-            $aHTML[] = "";
-          }
+            if ($dtTemp > time()) {
+                $aHTML[] = "";
+            } else {
+                $aHTML[] = "";
+            }
         }
-      }
     }
 
     return implode($aHTML, "\n");

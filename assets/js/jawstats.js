@@ -63,9 +63,13 @@ function ChangeLanguage(sLanguage) {
   self.location.href = ("?config=" + g_sConfig + "&year=" + g_iYear + "&month=" + g_iMonth + "&view=" + g_sCurrentView + "&lang=" + sLanguage);
 }
 
-function ChangeMonth(iYear, iMonth) {
+function ChangeMonth(iMonth) {
   $("#loading").show();
-  self.location.href = ("?config=" + g_sConfig + "&year=" + iYear + "&month=" + iMonth + "&view=" + g_sCurrentView + "&lang=" + g_sLanguage);
+  self.location.href = ("?config=" + g_sConfig + "&year=" + g_iYear + "&month=" + iMonth + "&view=" + g_sCurrentView + "&lang=" + g_sLanguage);
+}
+function ChangeYear(iYear) {
+  $("#loading").show();
+  self.location.href = ("?config=" + g_sConfig + "&year=" + iYear + "&month=" + g_iMonth + "&view=" + g_sCurrentView + "&lang=" + g_sLanguage);
 }
 
 function ChangeSite(sConfig) {

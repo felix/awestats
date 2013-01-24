@@ -154,7 +154,14 @@ $iDailyUniqueAvg = ($clsAWStats->iTotalUnique / $iDaysInMonth);
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mois <b class="caret"></b></a>
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Année - <?php echo date("Y", $g_aLogFiles[$g_iThisLog][0]) ?> <b class="caret"></b></a>
+
+                                <ul class="dropdown-menu">
+                                  <?php echo ToolChangeYear();?>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mois - <?php echo date("m", $g_aLogFiles[$g_iThisLog][0]) ?> <b class="caret"></b></a>
 
                                 <ul class="dropdown-menu">
                                   <?php echo ToolChangeMonth();?>
