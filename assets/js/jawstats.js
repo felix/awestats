@@ -1968,7 +1968,7 @@ function Misc_ThisMonthCalendar(sHeadline, sSubMenu, sDataItem) {
                                     $("#calTotMonth").html("<div><span>" + Lang("Total") + ":</span> " + NumberFormat(iTotal, 0) + "</div>");
                                     $("#calAvgMonth").html("<div><span>" + Lang("Average") + ":</span> " + NumberFormat((iTotal / oRow.dtDate.getDate()), 1) + "</div>");
                                   }
-
+                                  $("#content").show();
                                   // draw graph
                                   var aGraphItem = [Lang("Monday"), Lang("Tuesday"), Lang("Wednesday"), Lang("Thursday"), Lang("Friday"), Lang("Saturday"), Lang("Sunday")];
                                   var aGraphValue = [SafeDivide(aDay[1].iTotal, aDay[1].iCount),
@@ -1996,13 +1996,13 @@ function PageLayout_AllMonths(sPage) {
   }
   sHTML += "<div class=\"tableFull\">" + aTable[1] + "</div>";
   $("#content").html(sHTML);
+  $("#content").show();
   if (aTable[0] == true) {
     $(".tablesorter").tablesorter({ headers:{1:{sorter:"commaNumber"},2:{sorter:"commaNumber"},3:{sorter:"commaNumber"},5:{sorter:"commaNumber"},6:{sorter:"commaNumber"},7:{sorter:'bandwidth'}},sortList: [[0,0]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
   }
   if (sPage == "all") {
     DrawGraph_AllMonths();
   }
-  $("#content").fadeIn(g_iFadeSpeed);
 }
 
 function PageLayout_Browser(sPage) {
@@ -2297,7 +2297,6 @@ function PageLayout_Status(sPage) {
 }
 
 function PageLayout_ThisMonth(sPage) {
-  $("#content").show();
   switch (sPage) {
     case "all":
       var aTable = DrawTable_ThisMonth();
@@ -2305,6 +2304,7 @@ function PageLayout_ThisMonth(sPage) {
       DrawSubMenu("thismonth", "Overview") +
         "<div id=\"graph\" class=\"graph\">&nbsp;</div><div class=\"tableFull\">" + aTable[1] + "</div>";
     $("#content").html(sHTML);
+    $("#content").show();
     if (aTable[0] == true) {
       $(".tablesorter").tablesorter({ headers:{ 2:{sorter:"commaNumber"},3:{sorter:"commaNumber"},5:{sorter:"commaNumber"},7:{sorter:"bandwidth"},8:{sorter:"bandwidth"}},sortList:[[1,0]],textExtraction:function(node){return node.innerHTML.replace(',', '');}, widgets: ['zebra'] });
     }
