@@ -82,7 +82,7 @@ function ChangeTab(oSpan, sPage) {
 function CheckLastUpdate(oXML) {
   if (parseInt($(oXML).find('info').attr("lastupdate")) != g_dtLastUpdate) {
     var sURL = "?config=" + g_sConfig + "&year=" + g_iYear + "&month=" + g_iMonth + "&view=" + g_sCurrentView;
-    self.location.href = sURL;
+    //self.location.href = sURL;
   }
 }
 
