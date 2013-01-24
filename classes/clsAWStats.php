@@ -487,7 +487,7 @@
 
     //loop through years
     for ($iYear = date("Y", $GLOBALS["g_aLogFiles"][0][0]); $iYear >= date("Y", $GLOBALS["g_aLogFiles"][count($GLOBALS["g_aLogFiles"]) - 1][0]); $iYear--) {
-          $aHTML[] = "<li><a href=\"#\" onclick='ChangeYear(" . date("Y", $iYear) . ")'>" . $iYear . "</a></li>";
+          $aHTML[] = "<li><a href=\"#\" onclick='ChangeYear(" . $iYear . ")'>" . $iYear . "</a></li>";
     }
 
     return implode($aHTML, "\n");
@@ -507,17 +507,7 @@
             }
         }
         if ($bExists == true) {
-            $sCSS = "";
-            if ((date("n", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iMonth) && (date("Y", $GLOBALS["g_aLogFiles"][$GLOBALS["g_iThisLog"]][0]) == $iYear)) {
-                $sCSS .= " selected";
-            }
             $aHTML[] = "<li><a href=\"#\" onclick='ChangeMonth(" . date("n", $dtTemp) . ")'>" . Lang(date("m", $dtTemp)) . "</a></li>";
-        } else {
-            if ($dtTemp > time()) {
-                $aHTML[] = "";
-            } else {
-                $aHTML[] = "";
-            }
         }
     }
 
