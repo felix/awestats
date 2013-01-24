@@ -107,7 +107,7 @@ global $g_aTranslation;
       "Keyphrases" => "Phrases clés",
       "Keywords" => "Mots clés",
       "Last updated [DAYNAME], [DATE] [MONTH] [YEAR] at [TIME] [ELAPSEDTIME]. A total of [TOTALVISITORS] visitors ([UNIQUEVISITORS] unique) this month, an average of [DAILYAVERAGE] per day ([DAILYUNIQUE] unique)." => "Dernière mise à jour le [DAYNAME] [DATE] [MONTH] [YEAR] à [TIME] [ELAPSEDTIME].
-Un total de [TOTALVISITORS] visiteurs (dont [UNIQUEVISITORS] unique) ce mois, une moyenne de [DAILYAVERAGE] par jour (soit[DAILYUNIQUE] visiteurs uniques).",
+Un total de [TOTALVISITORS] visites dont [UNIQUEVISITORS] uniques ce mois, une moyenne de [DAILYAVERAGE] par jour soit [DAILYUNIQUE] visiteurs uniques.",
       "March" => "Mars",
       "May" => "Mai",
       "Monday" => "Lundi",
@@ -142,6 +142,11 @@ Un total de [TOTALVISITORS] visiteurs (dont [UNIQUEVISITORS] unique) ce mois, un
       "Update" => "Mettre à jour",
       "Update Site" => "Mettre à jour",
       "Wednesday" => "Mercredi",
+      "Searches" => "Recherches",
+      "Referrers" => "Référeurs",
+      "Identifier" => "Identifiant",
+      "Password" => "Mot de passe",
+      "Login" => "Connexion",
     )
   );
 

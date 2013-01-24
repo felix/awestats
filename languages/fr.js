@@ -274,7 +274,7 @@ oTranslation = {
 "Top Exit Pages":"Top des pages de sorties",
 "Top Page Views":"Top des pages vues",
 "Total":"Total",
-"Total Visitors":"Total Visiteurs",
+"Total Visitors":"Total Visites",
 "Trinidad and Tobago":"Trinité et Tobago",
 "Tue":"Mar",
 "Tuesday":"Mardi",

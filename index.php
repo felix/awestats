@@ -4,6 +4,7 @@ require 'config.php';
 require 'classes/session/autoload.php';
 require 'classes/Session.php';
 require 'classes/User.php';
+require_once "languages/translations.php";
 
 use spriebsch\session\PHPMysqlSessionBackend;
 
@@ -107,7 +108,6 @@ switch ($action) {
         require 'controllers/xml_update.php';
         break;
     default:
-        require_once "languages/translations.php";
         require 'controllers/render_index.php';
         break;
 }

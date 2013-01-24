@@ -1,7 +1,21 @@
 <?php
 header('Content-Type: text/html; charset="utf-8"', true);
-?>
 
+// TODO: refactor in a helper or something
+for ($i = 0; $i < count($GLOBALS["g_aTranslation"]); $i++) {
+    if (strtolower($GLOBALS["g_aTranslation"][$i]["code"]) == CONFIG_DEFAULT_LANGUAGE) {
+      $GLOBALS["g_aCurrentTranslation"] = $GLOBALS["g_aTranslation"][$i]["translations"];
+    }
+}
+function Lang($sString) {
+  if (isset($GLOBALS["g_aCurrentTranslation"][$sString]) == true) {
+    return $GLOBALS["g_aCurrentTranslation"][$sString];
+  } else {
+    return $sString;
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +24,7 @@ header('Content-Type: text/html; charset="utf-8"', true);
         <meta name="Description" content="Awestats - Connexion">
         <meta name="robots" content="no-cache">
 
-        <title><?php echo CONFIG_DEFAULT_TITLE; ?> - Connexion</title>
+        <title><?php echo CONFIG_DEFAULT_TITLE; ?> - <?php echo Lang('Login')?></title>
         <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     </head>
 
@@ -34,15 +48,15 @@ header('Content-Type: text/html; charset="utf-8"', true);
 
 
                     <form action="/index.php" method="post" accept-charset="utf-8" class="form-horizontal auto-focus">
-                        <fieldset><legend>Connexion</legend>
+                        <fieldset><legend><?php echo Lang('Login')?></legend>
                             <div class="control-group">
 
-                                <label class="control-label" for="email">E-mail</label>
+                                <label class="control-label" for="email"><?php echo Lang('Identifier')?></label>
                                 <div class="controls">
                                     <input type="text" name="email" value="" id="var_email"  />            </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="password">Mot de passe</label>
+                                <label class="control-label" for="password"><?php echo Lang('Password')?></label>
                                 <div class="controls">
 
                                     <input type="password" name="password" value=""  />         </div>
@@ -50,7 +64,7 @@ header('Content-Type: text/html; charset="utf-8"', true);
                         </fieldset>
 
                         <div class="form-actions">
-                            <input type="submit" class="btn btn-primary" value="Connexion" />
+                            <input type="submit" class="btn btn-primary" value="<?php echo Lang('Login')?>" />
                         </div>
 
                     </form>
