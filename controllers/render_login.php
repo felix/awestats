@@ -47,7 +47,7 @@ function Lang($sString) {
 <html>
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <meta name="author" content="Mezcalito">
+        <meta name="author" content="Awestats contributors">
         <meta name="Description" content="Awestats - Connexion">
         <meta name="robots" content="no-cache">
 
