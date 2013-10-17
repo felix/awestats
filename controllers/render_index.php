@@ -1,9 +1,8 @@
 <?php
 
-/*
- * JAWStats 0.7 Web Statistics
- *
+/**
  * Copyright (c) 2009 Jon Combe (jawstats.com)
+ * Copyright (c) 2013 Thomas Pierson <thomas@mezcalito.fr>
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
