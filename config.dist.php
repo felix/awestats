@@ -25,6 +25,9 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+// stats data config
+define('CONFIG_STATS_PATH', '/var/lib/awstats/');
+
 // core config parameters
 define('CONFIG_DEFAULT_TITLE', 'Example Organisation');
 define('CONFIG_DEFAULT_LANGUAGE', 'en-gb');

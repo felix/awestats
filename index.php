@@ -67,7 +67,7 @@ try {
     foreach ($sites as $site) {
         if (!empty($site)) {
             $aConfig[$site] = array(
-                "statspath" => "/var/lib/awstats/",
+                "statspath" => CONFIG_STATS_PATH,
                 "statsname" => "awstats[MM][YYYY].{$site}.txt",
                 "updatepath" => "/usr/lib/cgi-bin/",
                 "siteurl" => "http://{$site}/",
