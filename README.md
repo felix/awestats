@@ -9,7 +9,12 @@ It use RaphaelJS a vectoriel javascript library for building graphics and
 Bootstrap for its web UI. It now have user session and multisite
 support.
 
-TODO
+Installation
+------------
+
+Follow instructions in `documentation/INSTALL.md`.
+
+Todo
 ----
 
 1. Sanitize and restructure this "from scratch" PHP code using a lightweight
@@ -18,14 +23,14 @@ TODO
    full ajax navigation implementation is buggy and difficult to maintain.
 3. Implement an administration panel to manage users and websites.
 
-NOTES
+Notes
 -----
 
 For the moment, only a MySQL backend is implemented but code is ready to
 support other backends. So don't hesitate to implement other backends to suit
 your needs.
 
-AUTHORS and contributions history
+Authors and contributions history
 ---------------------------------
 
 * 2013 - Thomas Pierson (through Mezcalito Co.): Integration of Bootstrap for the
@@ -35,14 +40,14 @@ AUTHORS and contributions history
   graphics instead of flash.
 * 2009 - Jon Combe: Initial implementation of JAWstats.
 
-LINKS
+Links
 -----
 
 * [AWEstats Github Mezcalito repository](https://github.com/mezcalito/awestats)
 * [AWEstats Github Felix Hanley repository](https://github.com/felix/awestats)
 * [JAWstats](http://www.jawstats.com)
 
-LICENSE
+License
 -------
 
 This software is a free software released under the MIT License.
