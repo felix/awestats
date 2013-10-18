@@ -1,15 +1,15 @@
 CREATE TABLE IF NOT EXISTS `users` (
-  `email` varchar(250) NOT NULL,
+  `login` varchar(250) NOT NULL,
   `name` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL COMMENT 'MD5',
-  PRIMARY KEY (`email`)
+  PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `websites` (
     `url` varchar(250) NOT NULL,
-    `user_email` varchar(250) NOT NULL,
+    `user_login` varchar(250) NOT NULL,
     PRIMARY KEY (`url`),
-    FOREIGN KEY (user_email) REFERENCES users(email)
+    FOREIGN KEY (user_login) REFERENCES users(login)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `sessions` (

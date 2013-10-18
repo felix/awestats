@@ -29,22 +29,35 @@ require 'config.php';
 require 'classes/session/autoload.php';
 require 'classes/Session.php';
 require 'classes/User.php';
+require 'classes/UserBackendInterface.php';
 require_once "languages/translations.php";
 
 use spriebsch\session\PHPMysqlSessionBackend;
 
 try {
 
-    $backend = new PHPMysqlSessionBackend(DB_USER, DB_PASSWORD, DB_NAME);
+	switch (BACKEND_USER) {
+    	case 'mysql':
+    	default:
+    		require 'classes/UserBackendMysql.php';
+    		$backend_user = new UserBackendMysql(DB_USER, DB_PASSWORD, DB_NAME);
+    		break;
+	}
+	switch (BACKEND_SESSION) {
+    	case 'mysql':
+    	default:
+    		$backend_session = new PHPMysqlSessionBackend(DB_USER, DB_PASSWORD, DB_NAME);
+    		break;
+	}
 
-    $session = new Session($backend);
+    $session = new Session($backend_session);
     $session->configure('session-awestats', BASE_URL, '/', CONFIG_SESSION_LIFETIME);
     $session->start();
 
-    if (!empty($_POST['email']) && !empty($_POST['password'])) {
-        $email = (string) $_POST['email'];
+    if (!empty($_POST['login']) && !empty($_POST['password'])) {
+        $login = (string) $_POST['login'];
         $password = (string) $_POST['password'];
-        $user = new User($email, $password);
+        $user = new User($login, $password, $backend_user);
 
         if (!$user->isValid()) {
             require 'controllers/render_login.php';

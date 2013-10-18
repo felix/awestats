@@ -11,9 +11,9 @@ Installation
 
 4. Insert new users and websites into database like this:
 
-    INSERT INTO `users` (`email` , `name` , `password`) VALUES ('user@example.com', 'User Example', MD5( 'a good password' ));
-    INSERT INTO `websites` (`url` , `user_email`) VALUES ('www.example.com', 'user@example.com');
-    INSERT INTO `websites` (`url` , `user_email`) VALUES ('www.example2.com', 'user@example.com');
+    INSERT INTO `users` (`login` , `name` , `password`) VALUES ('user@example.com', 'User Example', MD5( 'a good password' ));
+    INSERT INTO `websites` (`url` , `user_login`) VALUES ('www.example.com', 'user@example.com');
+    INSERT INTO `websites` (`url` , `user_login`) VALUES ('www.example2.com', 'user@example.com');
 
 Or directly using your Phpmyadmin interface.
 

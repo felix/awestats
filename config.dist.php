@@ -36,8 +36,14 @@ define('CONFIG_CHANGE_SITE', true);
 define('CONFIG_UPDATE_SITE', true);
 define('CONFIG_SESSION_LIFETIME', 600);
 
-// db settings
+// url settings
 define('BASE_URL', 'awestats.example');
+
+// backend settings
+define('BACKEND_USER', 'mysql');
+define('BACKEND_SESSION', 'mysql');
+
+// db settings for mysql backend
 define('DB_USER', 'example');
 define('DB_PASSWORD', 'xxxxx');
 define('DB_NAME', 'awestats');

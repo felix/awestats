@@ -78,10 +78,10 @@ function Lang($sString) {
                         <fieldset><legend><?php echo Lang('Login')?></legend>
                             <div class="control-group">
 
-                                <label class="control-label" for="email"><?php echo Lang('Identifier')?></label>
+                                <label class="control-label" for="login"><?php echo Lang('Identifier')?></label>
                                 <div class="controls">
-                                    <input type="text" name="email" value="" id="var_email"  />            </div>
-                            </div>
+                                    <input type="text" name="login" value="" id="var_login"  />            </div>
+                            	</div>
                             <div class="control-group">
                                 <label class="control-label" for="password"><?php echo Lang('Password')?></label>
                                 <div class="controls">

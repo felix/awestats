@@ -23,12 +23,17 @@ Todo
    full ajax navigation implementation is buggy and difficult to maintain.
 3. Implement an administration panel to manage users and websites.
 
-Notes
------
+Backends implementation
+-----------------------
 
-For the moment, only a MySQL backend is implemented but code is ready to
-support other backends. So don't hesitate to implement other backends to suit
-your needs.
+For the moment, only a MySQL backend is implemented for session and user data
+storage but code is ready to support other backends. So don't hesitate to
+implement other backends to suit your needs.
+
+For examples:
+
+* Take a look on `classes/UserBackendInterface.php`, `classes/UserBackendMysql.php` for user data storage backend.
+* Take a look on `classes/session/PHPMysqlSessionBackend.php` for session backend.
 
 Authors and contributions history
 ---------------------------------
